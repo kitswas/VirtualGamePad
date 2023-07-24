@@ -45,3 +45,13 @@ Then, restart the server and try connecting again.
 
 The built-in QR code scanner might stop working after a while. This is a known issue and caused by a bug in the Google library used for scanning. Clear the data for Google Play Services to fix it. Or use a third-party QR code scanner.
 
+## Source Code
+
+Glad you asked! VirtualGamePad is open source and licensed under the [MIT licence](LICENCE.TXT).
+
+VirtualGamePad uses open source libraries and assets which are governed by their own licences.
+
+The source code for the Android app is available at [kitswas/VirtualGamePad-Mobile](https://github.com/kitswas/VirtualGamePad-Mobile)
+
+The source code for the Windows app is available at [kitswas/VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC)  
+Visit the [companion website](https://kitswas.github.io/VirtualGamePad-PC/) to see the documentation.
