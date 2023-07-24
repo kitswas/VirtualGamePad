@@ -26,3 +26,22 @@ Grab the latest APK from the [releases page](https://github.com/kitswas/VirtualG
 ### Windows
 
 Grab the latest archive(.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.
+
+## Usage
+
+Run the server on your PC and the client on your phone.  
+Connect to the server from the Android app by entering the IP address and port of the server.  
+Both devices need to be on the same network.
+
+## Troubleshooting
+
+If you're having trouble connecting to the server, try disabling your firewall or adding an exception for the server.  
+On Windows, you will be prompted to allow the server to communicate through the firewall when you run it for the first time.
+
+![Firewall](VGP_UAC_Dialog.png)
+
+If you're still having trouble, start a hotspot on your phone and connect your PC to it.  
+Then, restart the server and try connecting again.
+
+The built-in QR code scanner might stop working after a while. This is a known issue and caused by a bug in the Google library used for scanning. Clear the data for Google Play Services to fix it. Or use a third-party QR code scanner.
+
