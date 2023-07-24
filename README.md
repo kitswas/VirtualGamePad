@@ -3,9 +3,17 @@
 VirtualGamePad lets you use your Android phone as a gamepad for your Windows PC.  
 It's similar to DroidJoy, but free and open source.
 
+## Screenshots
+
+VirtualGamePad running on an Android 12 device:
+
 ![VirtualGamePad](VGP.svg)
 
 ![VirtualGamePad Dark](VGP_night.svg)
+
+VirtualGamePad Server running on Windows 11:
+
+![VirtualGamePad Server](VGP_Server.png)
 
 ## Installation
 
