@@ -33,6 +33,8 @@ Run the server on your PC and the client on your phone.
 Connect to the server from the Android app by entering the IP address and port of the server.  
 Both devices need to be on the same network.
 
+There's an [FAQ](FAQ.md) for gamers.
+
 ## Troubleshooting
 
 If you're having trouble connecting to the server, try disabling your firewall or adding an exception for the server.  
