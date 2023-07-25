@@ -43,12 +43,14 @@ On Windows, you will be prompted to allow the server to communicate through the 
 If you're still having trouble, start a hotspot on your phone and connect your PC to it.  
 Then, restart the server and try connecting again.
 
-The built-in QR code scanner might stop working after a while. This is a known issue and caused by a bug in the Google library used for scanning. Clear the data for Google Play Services to fix it. Or use a third-party QR code scanner.
+The built-in QR code scanner might stop working after a while. This is [a known issue](https://stackoverflow.com/q/75661357/8659747) and caused by a bug in the Google library used for scanning. Clear the data for Google Play Services to fix it. Or use a third-party QR code scanner.
 
 ### Help! The Gamepad doesn't work for a game
 
 If it is a newer title with built-in support for Gamepads on PC, you might face some problems.  
 Try running the server as admin. 🛡️
+
+**The game should not be running as admin.** This prevents input injection.
 
 Games without gamepad support should work out-of-the-box.
 
@@ -64,3 +66,5 @@ The source code for the Android app is available at [kitswas/VirtualGamePad-Mobi
 
 The source code for the Windows app is available at [kitswas/VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC).  
 Visit the [companion website](https://kitswas.github.io/VirtualGamePad-PC/) to see the documentation.
+
+[kitswas/VGP_Data_Exchange](https://github.com/kitswas/VGP_Data_Exchange/) is used to handle the communication between the client and the server.
