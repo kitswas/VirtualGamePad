@@ -7,7 +7,7 @@ That includes older games and many indie games.
 
 ## Any popular games?
 
-I've played Cassette Beasts, Dead Cells and Asphalt 9 with it.
+I've played [Cassette Beasts](https://www.cassettebeasts.com/), [Dead Cells](https://dead-cells.com/) and [Asphalt 9](https://asphaltlegends.com/) with it.
 
 ## The default mapping doesn't work for me. What do I do?
 
