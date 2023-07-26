@@ -5,7 +5,7 @@
 Mostly games that lack gamepad support.  
 That includes older games and many indie games.
 
-## Any popular games?
+## Any popular titles?
 
 I've played [Cassette Beasts](https://www.cassettebeasts.com/), [Dead Cells](https://dead-cells.com/) and [Asphalt 9](https://asphaltlegends.com/) with it.
 
