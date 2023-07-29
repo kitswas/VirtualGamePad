@@ -1,0 +1,10 @@
+logo: /assets/GamepadIcon.png
+
+plugins:
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/GamepadIcon.png
