@@ -7,13 +7,13 @@ It's similar to DroidJoy, but free and open source.
 
 VirtualGamePad running on an Android 12 device:
 
-![VirtualGamePad](VGP.svg)
+![VirtualGamePad](assets/VGP.svg)
 
-![VirtualGamePad Dark](VGP_night.svg)
+![VirtualGamePad Dark](assets/VGP_night.svg)
 
 VirtualGamePad Server running on Windows 11:
 
-![VirtualGamePad Server](VGP_Server.png)
+![VirtualGamePad Server](assets/VGP_Server.png)
 
 ## Installation
 
@@ -40,7 +40,7 @@ There's an [FAQ for gamers](FAQ.md).
 If you're having trouble connecting to the server, try disabling your firewall or adding an exception for the server.  
 On Windows, you will be prompted to allow the server to communicate through the firewall when you run it for the first time.
 
-![Firewall](VGP_UAC_Dialog.png)
+![Firewall](assets/VGP_UAC_Dialog.png)
 
 If you're still having trouble, start a hotspot on your phone and connect your PC to it.  
 Then, restart the server and try connecting again.
