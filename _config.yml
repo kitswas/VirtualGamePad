@@ -2,6 +2,15 @@ logo: /assets/GamepadIcon.png
 
 plugins:
   - jekyll-seo-tag
+  - jekyll-remote-theme
+
+remote_theme: pages-themes/dinky@v0.2.0
+
+show_downloads: true
+
+releases:
+  android_url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
+  windows_url: https://github.com/kitswas/VirtualGamePad-PC/releases
 
 defaults:
   - scope:
