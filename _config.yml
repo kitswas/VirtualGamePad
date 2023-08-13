@@ -3,6 +3,7 @@ logo: /assets/GamepadIcon.png
 plugins:
   - jekyll-seo-tag
   - jekyll-remote-theme
+  - jekyll-sitemap
 
 remote_theme: pages-themes/cayman@v0.2.0
 
