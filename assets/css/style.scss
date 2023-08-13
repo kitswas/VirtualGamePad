@@ -5,7 +5,15 @@
 
 .project-icon {
 	box-shadow: 0px 0px 1rem 4px whitesmoke;
+	border-radius: 0.3rem;
+	display: inline-block;
 	opacity: 1;
+	vertical-align: middle;
+}
+
+.project-tagline {
+	display: inline-flex;
+	font-weight: 600;
 }
 
 header .btn {
@@ -19,7 +27,7 @@ header .btn {
 		hsla(151deg, 67%, 51%, 0.6) 60%,
 		hsla(89deg, 75%, 61%, 0.6) 80%,
 		hsla(55deg, 100%, 50%, 0.6) 100%
-	);
+	);// https://www.joshwcomeau.com/gradient-generator/
 }
 
 header .btn:hover{
