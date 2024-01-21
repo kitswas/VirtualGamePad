@@ -54,15 +54,15 @@ Try running the server as admin. 🛡️
 
 **The game should not be running as admin.** This prevents input injection.
 
-Games without gamepad support should work out-of-the-box.
+Games without gamepad support should work out of the box.
 
 Read [How it works](https://kitswas.github.io/VirtualGamePad-PC/#how-it-works) to know why.
 
 ## Source Code
 
-Glad you asked! VirtualGamePad is open source and licensed under the [MIT licence](LICENCE.TXT).
+Glad you asked! VirtualGamePad is open source and licensed under the [GPLv3 licence](LICENCE.TXT).
 
-VirtualGamePad uses open source libraries and assets which are governed by their own licences.
+VirtualGamePad uses open-source libraries and assets which are governed by their own licences.
 
 The source code for the Android app is available at [kitswas/VirtualGamePad-Mobile](https://github.com/kitswas/VirtualGamePad-Mobile).
 
