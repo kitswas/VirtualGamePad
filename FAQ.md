@@ -11,17 +11,20 @@ I've played [Cassette Beasts](https://www.cassettebeasts.com/), [Dead Cells](htt
 
 ## The default mapping doesn't work for me. What do I do?
 
-You can change the mapping in the source code and build the server yourself.  
+You can:
+
+1. Change the controls in-game, if the game supports it.
+2. Change the mapping in the source code and build the server yourself.
+
 With a bit of remapping, almost everything is playable.  
 The server will eventually have a GUI for changing the mapping.
 
 ## I want to change the colour of the gamepad
 
-Again, this is something that will be added in the future.  
-I have already prepared nice alternate colours for the gamepad.
+This is already implemented on the main branch. The feature will be shipped in the next release.
 
-If you are can build the app yourself, you can change the primary colours in [ui/theme/Color.kt](https://github.com/kitswas/VirtualGamePad-Mobile/blob/main/app/src/main/java/io/github/kitswas/virtualgamepadmobile/ui/theme/Theme.kt).  
-The app will generate tonal variations of the primary colour for the rest of the UI.
+If you are building the app yourself, you can add more base colours in [app/src/main/java/io/github/kitswas/virtualgamepadmobile/data/BaseColor.kt](https://github.com/kitswas/VirtualGamePad-Mobile/blob/592ef996af1b61f2cf848e3e01b97d2a1098f493/app/src/main/java/io/github/kitswas/virtualgamepadmobile/data/BaseColor.kt).  
+The app will generate tonal variations of the base colour for the rest of the UI.
 
 ## You mentioned cool upcoming features. When will they be available?
 
