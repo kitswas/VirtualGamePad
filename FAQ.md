@@ -17,14 +17,8 @@ You can:
 2. Change the mapping in the source code and build the server yourself.
 
 With a bit of remapping, almost everything is playable.  
-The server will eventually have a GUI for changing the mapping.
-
-## I want to change the colour of the gamepad
-
-This is already implemented on the main branch. The feature will be shipped in the next release.
-
-If you are building the app yourself, you can add more base colours in [app/src/main/java/io/github/kitswas/virtualgamepadmobile/data/BaseColor.kt](https://github.com/kitswas/VirtualGamePad-Mobile/blob/592ef996af1b61f2cf848e3e01b97d2a1098f493/app/src/main/java/io/github/kitswas/virtualgamepadmobile/data/BaseColor.kt).  
-The app will generate tonal variations of the base colour for the rest of the UI.
+~~The server will eventually have a GUI for changing the mapping.~~  
+We now have partial remapping support on the server.
 
 ## You mentioned cool upcoming features. When will they be available?
 
