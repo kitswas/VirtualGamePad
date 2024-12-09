@@ -1,5 +1,7 @@
 # VirtualGamePad
 
+[![GitHub stars](https://img.shields.io/github/stars/kitswas/VirtualGamePad?style=social)](https://github.com/kitswas/VirtualGamePad/)
+
 VirtualGamePad lets you use your Android phone as a gamepad for your Windows PC.  
 It's similar to DroidJoy, but free and open source.
 
@@ -18,6 +20,10 @@ VirtualGamePad Server running on Windows 11:
 ## Installation
 
 To use VirtualGamePad, you need to install the Android app (client) on your phone and the Windows app (server) on your PC.
+
+To be notified of new updates, you can star ⭐ or watch 👁️ the source repositories on GitHub.
+
+![GitHub Star and Watch](assets/GitHub_Star_Watch.png)
 
 ### Android
 
