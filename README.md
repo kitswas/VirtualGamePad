@@ -45,13 +45,19 @@ There's an [**FAQ** for gamers](FAQ.md).
 
 ## Troubleshooting
 
+### Help! I cannot connect to the server
+
 If you're having trouble connecting to the server, try disabling your firewall or adding an exception for the server.  
 On Windows, you will be prompted to allow the server to communicate through the firewall when you run it for the first time.
 
 ![Firewall](assets/VGP_UAC_Dialog.png)
 
-If you're still having trouble, start a hotspot on your phone and connect your PC to it.  
+**If you're still having trouble, start a hotspot on your phone and connect your PC to it.** (or vice-versa, try both)  
 Then, restart the server and try connecting again.
+
+_Do this before complaining about the app not working._
+
+### Help! The QR code scanner doesn't work
 
 The built-in QR code scanner might stop working after a while. This is [a known issue](https://stackoverflow.com/q/75661357/8659747) and caused by a bug in the Google library used for scanning. Clear the data for Google Play Services to fix it. Or use a third-party QR code scanner.
 
