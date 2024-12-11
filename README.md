@@ -59,7 +59,18 @@ _Do this before complaining about the app not working._
 
 ### Help! The QR code scanner doesn't work
 
-The built-in QR code scanner might stop working after a while. This is [a known issue](https://stackoverflow.com/q/75661357/8659747) and caused by a bug in the Google library used for scanning. Clear the data for Google Play Services to fix it. Or use a third-party QR code scanner.
+This is a known issue with the Google library used for scanning.
+
+[Google code scanner](https://developers.google.com/ml-kit/vision/barcode-scanning/code-scanner) is an optional module in Google Play Services. It's fast but the delivery is unreliable when installing apps from outside the Play Store.
+
+The problem shows up [in various forms](https://stackoverflow.com/questions/tagged/barcode-scanner+android+google-mlkit) due to various reasons:
+
+1. Google code scanner doesn't work at all. This is because it uses an unbundled library that must be downloaded before use.  
+Simply connect the device to the internet, launch the app and wait for a few minutes. _This is required only once._
+2. Google code scanner might stop working after a while. This might happen due to a Play Services update.  
+Clear the data for Google Play Services to fix it. _This will remove the module and it must be downloaded again._
+
+You may also use a third-party QR code scanner or enter the data manually.
 
 ### Help! The Gamepad doesn't work for a game
 
