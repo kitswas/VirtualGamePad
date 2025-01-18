@@ -55,6 +55,9 @@ $color-dark: #fefefe;
 $link: #1a44ff;
 $link-dark: #5abaff;
 
+$heading: #159957;
+$heading-dark: #67eaa9;
+
 /** Light Theme **/
 body,
 .markdown-body img {
@@ -86,6 +89,15 @@ video {
   border: 1px solid $markdown-border;
 }
 
+.main-content h1,
+.main-content h2,
+.main-content h3,
+.main-content h4,
+.main-content h5,
+.main-content h6 {
+  color: $heading;
+}
+
 /** Dark Theme **/
 @media (prefers-color-scheme: dark) {
   .light-only {
@@ -108,6 +120,14 @@ video {
   .markdown-body code,
   .markdown-body tt .markdown-body img {
     background-color: $markdown-dark;
+  }
+  .main-content h1,
+  .main-content h2,
+  .main-content h3,
+  .main-content h4,
+  .main-content h5,
+  .main-content h6 {
+    color: $heading-dark;
   }
 }
 
