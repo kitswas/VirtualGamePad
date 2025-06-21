@@ -1,20 +1,41 @@
-logo: /assets/GamepadIcon.png
+logo: /assets/SquareIcon.png
 
 plugins:
   - jekyll-seo-tag
   - jekyll-remote-theme
   - jekyll-sitemap
+  - jekyll-include-cache
 
-remote_theme: pages-themes/cayman@v0.2.0
+remote_theme: hydecorp/hydejack@v9.2.1
 
-show_downloads: true
-
-releases:
-  android_url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
-  windows_url: https://github.com/kitswas/VirtualGamePad-PC/releases
+menu:
+  - title: Download Android App
+    url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
+  - title: Download Windows Server
+    url: https://github.com/kitswas/VirtualGamePad-PC/releases
+  - title: View on GitHub
+    url: https://github.com/kitswas/VirtualGamePad/
+  - title: FAQ
+    url: /FAQ.html
 
 defaults:
   - scope:
       path: ""
     values:
-      image: /assets/GamepadIcon.png
+      accent_image: /assets/GamepadIcon.png
+      accent_color: "#157878"
+
+favicon: /favicon.ico
+
+hydejack:
+  # https://hydejack.com/blog/hydejack/2024-09-08-x-marks-the-spot-in-hydejack-9-2/
+  # Starting with Hydejack 9.2, dark mode is included in all versions of Hydejack.
+  dark_mode:
+    # Set to `true` to always use the dark theme.
+    always: false
+
+    # Set to `true` to use the dark theme based on visitors' preference (OS setting).
+    dynamic: true
+
+    # Set to `true` to allow visitors to switch between light and dark mode.
+    icon: true
