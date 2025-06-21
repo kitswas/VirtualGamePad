@@ -9,7 +9,8 @@ It's similar to DroidJoy, but free and open source.
 Benefits of using VirtualGamePad:
 
 - **Free and Open Source**: No ads, no tracking, no paywalls.
-- **Secure**: The code is open for anyone to review. No need to trust a random app from the Play Store.
+- **Secure**: The code is open for anyone to review. No need to trust a random app from who-knows-where.
+- **Easy to Use**: Just install the app on your phone and the server on your PC. Connect via Wi-Fi and enjoy!
 - **Economical & Eco-friendly**: No need to buy a new gamepad. Use your old phone instead. Save money and reduce e-waste.
 
 ## Screenshots
@@ -50,7 +51,7 @@ Run the server on your PC and the client on your phone.
 Connect to the server from the Android app by entering the IP address and port of the server.  
 Both devices need to be on the same network.
 
-There's an [**FAQ** for gamers](FAQ.md).
+[**Read the FAQ here**](FAQ.md).
 
 ## Troubleshooting
 
@@ -68,18 +69,13 @@ _Do this before complaining about the app not working._
 
 ### Help! The QR code scanner doesn't work
 
-This is a known issue with the Google library used for scanning.
-
 [Google code scanner](https://developers.google.com/ml-kit/vision/barcode-scanning/code-scanner) is an optional module in Google Play Services. It's fast but the delivery is unreliable when installing apps from outside the Play Store.
 
-The problem shows up [in various forms](https://stackoverflow.com/questions/tagged/barcode-scanner+android+google-mlkit) due to various reasons:
+Update to [Mobile app version 0.3.0](https://github.com/kitswas/VirtualGamePad-Mobile/releases/tag/v0.3.0) or later.
+The app will now guide you through downloading and installing the required module directly in-app.
 
-1. Google code scanner doesn't work at all. This is because it uses an unbundled library that must be downloaded before use.  
-Simply connect the device to the internet, launch the app and wait for a few minutes. _This is required only once._
-2. Google code scanner might stop working after a while. This might happen due to a Play Services update.  
-Clear the data for Google Play Services to fix it. _This will remove the module and it must be downloaded again._
-
-You may also use a third-party QR code scanner or enter the data manually.
+> [!IMPORTANT]  
+> Google Play Services is required.
 
 ### Help! The Gamepad doesn't work for a game
 
