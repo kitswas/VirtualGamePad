@@ -3,6 +3,9 @@
 
 If your problem is not covered here, [file an issue](FAQ.md#bug-reports-and-feature-requests).
 
+- this list will be replaced by the table of contents
+{:toc}
+
 ## Help! I cannot connect to the server
 
 If you're having trouble connecting to the server, try disabling your firewall or adding an exception for the server.  

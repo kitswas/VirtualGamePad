@@ -11,6 +11,9 @@ Before making changes, I ask myself:
 
 I mostly work on this during my college breaks. (1-4 releases yearly)
 
+- this list will be replaced by the table of contents
+{:toc}
+
 ## Not Planned
 
 Won't be implemented in the foreseeable future.
