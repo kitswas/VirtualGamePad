@@ -1,7 +1,7 @@
 
 # Troubleshooting
 
-If your problem is not covered here, [file an issue](https://github.com/kitswas/VirtualGamePad/issues/new/choose).
+If your problem is not covered here, [file an issue](FAQ.md#bug-reports-and-feature-requests).
 
 ## Help! I cannot connect to the server
 
