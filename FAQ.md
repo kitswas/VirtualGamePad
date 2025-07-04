@@ -79,3 +79,12 @@ Please open an issue on the Github issue tracker of the relevant repository:
 - [VirtualGamePad Website](https://github.com/kitswas/VirtualGamePad/issues/new/choose)
 
 If you are not sure which repository to use, just use the VirtualGamePad Website and I will move it to the right place.
+
+### Bonus XKCD Comic
+
+Fixing bugs:
+
+![XKCD 1739](https://imgs.xkcd.com/comics/fixing_problems.png)
+
+> 'What was the original problem you were trying to fix?' 'Well, I noticed one of the tools I was using had an inefficiency that was wasting my time.'
+> — [XKCD 1739](https://xkcd.com/1739/)

@@ -39,3 +39,9 @@ Read [How it works](https://kitswas.github.io/VirtualGamePad-PC/#how-it-works) t
 ## Help! The gamepad feels laggy/unresponsive
 
 This is covered in [the FAQ.](FAQ.md#feels-laggyunresponsive)
+
+## Bonus XKCD Comic
+
+Tech Support Cheat Sheet — [XKCD 627](https://xkcd.com/627/):
+
+![XKCD 627](https://imgs.xkcd.com/comics/tech_support_cheat_sheet_2x.png)
