@@ -65,7 +65,7 @@ Here's what I have observed (on 2.4GHz Wi-Fi):
 Use 1 or 2 for the best experience.  
 _The 5GHz WiFi band might provide better performance._
 
-## You mentioned cool upcoming features. When will they be available?
+## You mentioned [cool upcoming features](Roadmap.md). When will they be available?
 
 As soon as I have time to work on it. :)  
 If you want them sooner, you can _contribute to the project_.
