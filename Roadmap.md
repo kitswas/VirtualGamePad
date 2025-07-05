@@ -37,9 +37,13 @@ I want to try doing these when I have time.
 - Symmetric Key Encryption on the sockets.  
   A random key can be generated on the server for each session. We already have a secure way to share the key. _(The user can scan the QR code or type the key.)_  
   The real questions are  
+  1. Is it necessary?
+  2. What will it cost in terms of performance?
 
-    1. Is it necessary?
-    2. What will it cost in terms of performance?
+- Adding the two triggers to the gamepad layout.  
+  - Need to determine the position of the triggers on the screen. (Mobile app)  
+  - Handle the input on the server side. (PC app)
+  - The data exchange format does not need changes.
 
 ## Bonus XKCD Comic
 
