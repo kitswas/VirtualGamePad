@@ -1,3 +1,8 @@
+---
+description: |
+  A roadmap for the Virtual GamePad system, detailing planned features, ongoing experiments, and future considerations.
+---
+
 # Roadmap
 
 Every line of code is a liability.

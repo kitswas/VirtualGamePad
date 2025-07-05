@@ -1,3 +1,7 @@
+---
+description: |
+  The troubleshooting guide for Virtual GamePad.
+---
 
 # Troubleshooting
 

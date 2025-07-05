@@ -1,3 +1,8 @@
+---
+description: |
+  Frequently asked questions about the Virtual GamePad system, including game compatibility, control mapping, performance, etc.
+---
+
 # FAQ
 
 - this list will be replaced by the table of contents
