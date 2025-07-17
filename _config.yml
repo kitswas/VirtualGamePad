@@ -22,6 +22,7 @@ defaults:
   - scope:
       path: ""
     values:
+      image: /assets/open-graph-image.png # Default social image
       accent_image: /assets/GamepadIcon.png
       accent_color: "#157878"
 
