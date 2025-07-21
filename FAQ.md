@@ -75,15 +75,21 @@ _The 5GHz WiFi band might provide better performance._
 As soon as I have time to work on it. :)  
 If you want them sooner, you can _contribute to the project_.
 
+## Getting Help
+
+### Got Questions?
+
+- Check existing issues - someone might have asked already
+- Start a [Discussion](https://github.com/kitswas/VirtualGamePad/discussions) for general questions
+- Create an issue for specific problems
+
+### Want to Chat?
+
+Right now, GitHub Discussions is our main place to talk. We might add Discord later when we have more people to help moderate.
+
 ## Bug reports and feature requests?
 
-Please open an issue on the Github issue tracker of the relevant repository:
-
-- [VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC/issues/new/choose)
-- [VirtualGamePad-Mobile](https://github.com/kitswas/VirtualGamePad-Mobile/issues/new/choose)
-- [VirtualGamePad Website](https://github.com/kitswas/VirtualGamePad/issues/new/choose)
-
-If you are not sure which repository to use, just use the VirtualGamePad Website and I will move it to the right place.
+See [the contributing guide](Contributing.md#-how-to-report-issues).
 
 ### Bonus XKCD Comic
 
