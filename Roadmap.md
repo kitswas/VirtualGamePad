@@ -32,8 +32,9 @@ These are experiments to determine feasibility and potential implementation path
 They may or may not lead to a feature in the future.
 
 - True Gamepad input with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.
-- Linux support using `/dev/uinput`. Both Keyboard/Mouse and Gamepad input modes.  
-  See [tracking issue](https://github.com/kitswas/VirtualGamePad-PC/issues/9).
+- Linux support - Both Keyboard/Mouse and Gamepad input modes.  
+  See [tracking issue](https://github.com/kitswas/VirtualGamePad-PC/issues/9).  
+  **Completed. Need to test some more and fix the packaging.**
 
 ## Planned
 
