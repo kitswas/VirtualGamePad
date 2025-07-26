@@ -148,4 +148,4 @@ Each repository has its own README with setup instructions. Pick the one that ma
 
 You don't need to write a single line of code to make a huge difference. Every bug you find, every game you test, every suggestion you make helps build something awesome for the gaming community! 🎮
 
-**Ready to help?** Start by [trying it out](https://kitswas.github.io/VirtualGamePad/) and [let us know](https://github.com/kitswas/VirtualGamePad/issues) how it goes!
+**Ready to help?** Start by [trying it out](https://kitswas.github.io/VirtualGamePad/#installation) and [let us know](https://github.com/kitswas/VirtualGamePad/issues) how it goes!
