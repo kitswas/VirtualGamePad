@@ -23,12 +23,13 @@ You may review the source code for further verification.
 
 ## Third-Party Services
 
-VirtualGamePad relies on the following third-party services. These services have their own privacy practices outside the control of VirtualGamePad:
+VirtualGamePad relies on GitHub to host the website and repositories.  
+The website loads images from various sources (Shields.io, XKCD, etc.) on the internet.
 
-| Service      | Purpose                              | Affects | Privacy Policy |
-|--------------|--------------------------------------|---------|----------------|
-| GitHub       | Hosts the website and repositories   | Everything except the apps | [GitHub Privacy Policy][1] |
-| Shields.io   | Provides badges (claims no trackers) | The website, repos, and the server (about screen only) | [Shields.io Privacy Policy][2] |
+These services have their own privacy practices outside the control of VirtualGamePad:
+
+- [GitHub Privacy Policy][1]
+- [Shields.io Privacy Policy][2] (claims no trackers at the time of writing)
 
 [1]: https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement
 [2]: https://shields.io/privacy
