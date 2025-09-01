@@ -35,6 +35,7 @@ They may or may not lead to a feature in the future.
 - Linux support - Both Keyboard/Mouse and Gamepad input modes.  
   See [tracking issue](https://github.com/kitswas/VirtualGamePad-PC/issues/9).  
   **Completed. Need to test some more and fix the packaging.**
+- Adding the two triggers to the gamepad layout. **Testing this.**
 
 ## Planned
 
@@ -45,11 +46,6 @@ I want to try doing these when I have time.
   The real questions are  
   1. Is it necessary?
   2. What will it cost in terms of performance?
-
-- Adding the two triggers to the gamepad layout.  
-  - Need to determine the position of the triggers on the screen. (Mobile app)  
-  - Handle the input on the server side. (PC app)
-  - The data exchange format does not need changes.
 
 ## Bonus XKCD Comic
 
