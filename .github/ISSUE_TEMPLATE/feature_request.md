@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+First, please [check the roadmap](https://kitswas.github.io/VirtualGamePad/Roadmap.html).
+
 **Describe the solution you'd like**
 What you want to happen.
 
