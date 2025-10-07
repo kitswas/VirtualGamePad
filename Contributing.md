@@ -5,7 +5,7 @@ description: |
 
 # Contributing to VirtualGamePad
 
-Welcome to the VirtualGamePad project! We're building a virtual gamepad that lets you use your Android phone as a game controller for Windows PC, and **we need YOUR help** - whether you're a gamer or someone who just wants a better way to play games.
+Welcome to the VirtualGamePad project! We're building a virtual gamepad that lets you use your Android phone as a game controller for PCs, and **we need YOUR help** - whether you're a gamer or someone who just wants a better way to play games.
 
 - this list will be replaced by the table of contents
 {:toc}

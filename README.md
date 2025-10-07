@@ -3,7 +3,7 @@
 [![GitHub License](https://img.shields.io/github/license/kitswas/VirtualGamePad)
 ![GitHub Stars](https://img.shields.io/github/stars/kitswas/VirtualGamePad?style=social)](https://github.com/kitswas/VirtualGamePad/)
 
-VirtualGamePad lets you use your Android phone as a gamepad for your Windows PC.  
+VirtualGamePad lets you use your Android phone as a gamepad for your PCs.  
 It's similar to DroidJoy, but ***free*** and ***open-source***.
 
 > **No ads, no tracking, no paywalls.**
@@ -53,12 +53,16 @@ Or, grab the latest APK from the [releases page](https://github.com/kitswas/Virt
 ### Windows
 
 Grab the latest archive(.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
-[<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/total)
+[<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 ### Linux
 
-**Coming soon**: Linux support is [in development](https://github.com/kitswas/VirtualGamePad-PC/issues/9).
+Grab the latest archive(.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
+[<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
+![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
+
+We tested it on Ubuntu/Debian only. But it should work on other distributions as well.
 
 ## Usage
 

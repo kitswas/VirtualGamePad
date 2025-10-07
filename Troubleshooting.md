@@ -22,6 +22,16 @@ Then, restart the server and try connecting again.
 
 _Do this before complaining about the app not working._
 
+## Help! The client is connected but the Gamepad doesn't work for any game
+
+Check the Preferences screen in the server. Different input methods (Keyboard/Mouse or Gamepad) have different requirements.
+
+![Screenshot of the Preferences screen at the time of writing](assets/Server_preferences_Windows.png)
+
+On Windows, the Keyboard/Mouse mode works out of the box. The Gamepad mode requires the admin privilege. (Right click and Run as admin)
+
+On Linux, the server requires rw access to `/dev/uinput`. Multiple ways to achieve this are described in-app.
+
 ## Help! The Gamepad doesn't work for a game
 
 Try running the server as admin. 🛡️

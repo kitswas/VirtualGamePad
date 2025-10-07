@@ -26,16 +26,19 @@ Won't be implemented in the foreseeable future.
 - Bluetooth as a connection mode.
 - Support for multiple clients with a single server. See [this issue](https://github.com/kitswas/VirtualGamePad-PC/issues/8).
 
+## Completed
+
+- Linux support - Both Keyboard/Mouse and Gamepad input modes.  
+  See [tracking issue](https://github.com/kitswas/VirtualGamePad-PC/issues/9).  
+  **Completed and released! The server is now available for Linux. Packaging improvements and further testing ongoing.**
+- Adding the two triggers to the gamepad layout.
+
 ## Ongoing Experiments
 
 These are experiments to determine feasibility and potential implementation paths.  
 They may or may not lead to a feature in the future.
 
 - True Gamepad input with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.
-- Linux support - Both Keyboard/Mouse and Gamepad input modes.  
-  See [tracking issue](https://github.com/kitswas/VirtualGamePad-PC/issues/9).  
-  **Completed. Need to test some more and fix the packaging.**
-- Adding the two triggers to the gamepad layout. **Testing this.**
 
 ## Planned
 
