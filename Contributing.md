@@ -91,7 +91,7 @@ We want VirtualGamePad to be the **easiest, lightest, most reliable way** to use
 It's actually 4 connected projects:
 
 - **[VirtualGamePad](https://github.com/kitswas/VirtualGamePad)** - The project website and documentation
-- **[VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC)** - The Windows desktop app that receives your inputs
+- **[VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC)** - The PC (Windows or Linux) app that receives your inputs
 - **[VirtualGamePad-Mobile](https://github.com/kitswas/VirtualGamePad-Mobile)** - Android app version
 - **[VGP_Data_Exchange](https://github.com/kitswas/VGP_Data_Exchange)** - The behind-the-scenes communication code
 

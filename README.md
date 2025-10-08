@@ -27,13 +27,13 @@ VirtualGamePad running on an Android 12 device:
 
 ![VirtualGamePad Dark](assets/VGP_night.svg)
 
-VirtualGamePad Server running on Windows 11:
+VirtualGamePad Server running on a PC:
 
 ![VirtualGamePad Server](assets/VGP_Server.png)
 
 ## Installation
 
-To use VirtualGamePad, you need to install the Android app (client) on your phone and the Windows app (server) on your PC.
+To use VirtualGamePad, you need to install the Android app (client) on your phone and the PC app (server) on your PC.
 
 To be notified of new updates, you can star ⭐ or watch 👁️ the source repositories on GitHub.
 
@@ -52,13 +52,13 @@ Or, grab the latest APK from the [releases page](https://github.com/kitswas/Virt
 
 ### Windows
 
-Grab the latest archive(.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
+Grab the latest archive(Virtual-GamePad-Windows.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
 [<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 ### Linux
 
-Grab the latest archive(.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
+Grab the latest archive(Virtual-GamePad-Ubuntu.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it, `chmod +x bin/VGamepadPC` and `bin/VGamepadPC`.  
 [<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 

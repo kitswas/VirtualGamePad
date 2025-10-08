@@ -38,7 +38,8 @@ Won't be implemented in the foreseeable future.
 These are experiments to determine feasibility and potential implementation paths.  
 They may or may not lead to a feature in the future.
 
-- True Gamepad input with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.
+- True Gamepad input with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.  
+  _Implemented but sometimes crashes on server start._
 
 ## Planned
 
