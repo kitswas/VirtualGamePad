@@ -33,7 +33,7 @@ VirtualGamePad Server running on a PC:
 
 ## Installation
 
-To use VirtualGamePad, you need to install the Android app (client) on your phone and the PC app (server) on your PC.
+To use VirtualGamePad, you need to install the Android app (client) on your phone and download the portable PC app (server) on your PC.
 
 To be notified of new updates, you can star ⭐ or watch 👁️ the source repositories on GitHub.
 
@@ -53,12 +53,15 @@ Or, grab the latest APK from the [releases page](https://github.com/kitswas/Virt
 ### Windows
 
 Grab the latest archive(Virtual-GamePad-Windows.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
+The experimental Gamepad Input mode has extra requirements, see the in-app description on the Preferences page.  
 [<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 ### Linux
 
 Grab the latest archive(Virtual-GamePad-Ubuntu.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it, `chmod +x bin/VGamepadPC` and `bin/VGamepadPC`.  
+If Qt complains about 'xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin', `sudo apt install libxcb-cursor0` should fix it.  
+See the in-app description on the Preferences page.  
 [<img src="./assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
