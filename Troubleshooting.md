@@ -28,7 +28,13 @@ Check the Preferences screen in the server. Different input methods (Keyboard/Mo
 
 ![Screenshot of the Preferences screen at the time of writing](assets/Server_preferences_Windows.png)
 
-On Windows, the Keyboard/Mouse mode works out of the box. The Gamepad mode requires the admin privilege. (Right click and Run as admin)
+On Windows, the Keyboard/Mouse mode works out of the box. The Gamepad mode requires:
+
+1. The admin privilege. (Right click and Run as admin)
+2. App sideloading (developer mode) enabled. [(Settings > System > For developers > Developer mode)](ms-settings:developers).
+
+![Settings App sideloading](assets/settings_app_sideloading.png)  
+![Turn on developer mode](assets/developer_mode_UAC.png)
 
 On Linux, the server requires rw access to `/dev/uinput`. Multiple ways to achieve this are described in-app.
 
