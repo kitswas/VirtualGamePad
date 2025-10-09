@@ -21,6 +21,21 @@ Action games are also playable, but you better be prepared to practice.
 
 I've played [Assassin's Creed 4: Black Flag](https://en.wikipedia.org/wiki/Assassin's_Creed_IV%3A_Black_Flag), [Dave the Diver](https://en.wikipedia.org/wiki/Dave_the_Diver), [Ys X: Nordics](https://en.wikipedia.org/wiki/Ys_X:_Nordics), [Cassette Beasts](https://en.wikipedia.org/wiki/Cassette_Beasts) and [Dead Cells](https://en.wikipedia.org/wiki/Dead_Cells) with it.
 
+## USB connection?
+
+USB support is already present.
+
+Here the the steps:
+
+- Connect your phone to your PC via USB cable.
+- On your phone, set the connection mode to USB tethering.
+- (Optional) Turn off mobile data on your phone, if you have a limited data plan.
+- Turn on the server, choose the correct IP and connect.
+
+The following image shows the app connected via USB.
+
+![USB Tethering](assets/VGP_USB_Tethering.png)
+
 ## The default mapping doesn't work for me. What do I do?
 
 You can:
