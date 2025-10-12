@@ -1,5 +1,6 @@
 ---
 lang: bn
+layout: default
 ---
 
 # VirtualGamePad

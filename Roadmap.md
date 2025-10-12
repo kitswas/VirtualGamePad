@@ -2,6 +2,7 @@
 lang: en
 description: |
   A roadmap for the Virtual GamePad system, detailing planned features, ongoing experiments, and future considerations.
+layout: default
 ---
 
 # Roadmap

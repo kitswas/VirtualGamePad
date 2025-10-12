@@ -1,6 +1,7 @@
 ---
 lang: en
 description: The VirtualGamePad Privacy Policy
+layout: default
 ---
 
 # Privacy Policy

@@ -2,6 +2,7 @@
 lang: en
 description: |
   Frequently asked questions about the Virtual GamePad system, including game compatibility, control mapping, performance, etc.
+layout: default
 ---
 
 # FAQ

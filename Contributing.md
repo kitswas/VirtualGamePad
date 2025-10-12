@@ -2,6 +2,7 @@
 lang: en
 description: |
   Contribution guide for VirtualGamePad
+layout: default
 ---
 
 # Contributing to VirtualGamePad

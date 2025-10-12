@@ -1,0 +1,50 @@
+---
+# Copyright (c) 2018 Florian Klampfer <https://qwtel.com/>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+layout: base
+---
+
+{% assign strings = site.data.strings %}
+
+<article class="page">
+  <header>
+    <h1 class="page-title">
+      {{ page.title | default:strings.home | default:"Home" }}
+    </h1>
+    {% include components/message.html text=page.description
+    hide=page.hide_description %}
+  </header>
+
+  {% capture _page_body %}{{ content }}{% endcapture %}
+  {%- assign _h1_parts = _page_body | split: '</h1>' -%}
+  {%- if _h1_parts.size > 1 -%}
+    {%- assign _rest = '' -%}
+    {%- for _part in _h1_parts -%}
+      {%- if forloop.index0 > 0 -%}
+        {%- if _rest == '' -%}
+          {%- assign _rest = _part -%}
+        {%- else -%}
+          {%- assign _rest = _rest | append: '</h1>' | append: _part -%}
+        {%- endif -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {{ _rest }}
+  {%- else -%}
+    {{ _page_body }}
+  {%- endif -%}
+
+  <hr class="dingbat related" />
+</article>
