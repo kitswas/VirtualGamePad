@@ -1,0 +1,31 @@
+<span class="sr-only">
+  {{ site.data.strings.navigation | default:"Navigation" }}{{
+  site.data.strings.colon | default:":" }}
+</span>
+
+{%- comment -%} Determine active language robustly (explicit first): 1)
+include.lang (if caller passes it) 2) jekyll-polyglot's site.active_lang 3)
+page.lang 4) site.default_lang {%- endcomment -%} {% assign current_lang =
+include.lang | default: site.active_lang | default: page.lang | default:
+site.default_lang %} {% assign menu = site.menu[current_lang] | default:
+site.menu[page.lang] | default: site.menu[site.default_lang] %}
+
+<ul>
+  {% for node in menu %}
+  <li>
+    <a
+      {%
+      if
+      forloop.first
+      %}id="_drawer--opened"
+      {%
+      endif
+      %}
+      href="{% include smart-url url=node.url %}"
+      class="sidebar-nav-item"
+    >
+      {{ node.title }}
+    </a>
+  </li>
+  {% endfor %}
+</ul>

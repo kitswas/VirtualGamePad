@@ -1,4 +1,5 @@
 ---
+lang: en
 description: |
   The troubleshooting guide for Virtual GamePad.
 ---

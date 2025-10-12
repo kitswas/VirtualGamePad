@@ -1,4 +1,5 @@
 ---
+lang: en
 description: |
   Contribution guide for VirtualGamePad
 ---

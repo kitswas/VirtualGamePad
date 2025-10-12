@@ -1,4 +1,5 @@
 ---
+lang: en
 description: The VirtualGamePad Privacy Policy
 ---
 
