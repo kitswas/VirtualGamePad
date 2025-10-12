@@ -27,40 +27,6 @@ menu:
       url: /Roadmap.html
     - title: Privacy Policy
       url: /Privacy.html
-  hi:
-    - title: एंड्रॉइड ऐप डाउनलोड करें
-      url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
-    - title: पीसी सर्वर डाउनलोड करें
-      url: https://github.com/kitswas/VirtualGamePad-PC/releases
-    - title: GitHub पर देखें
-      url: https://github.com/kitswas/VirtualGamePad/
-    - title: सामान्य प्रश्न
-      url: /hi/FAQ.html
-    - title: समस्या निवारण
-      url: /hi/Troubleshooting.html
-    - title: योगदान करें
-      url: /hi/Contributing.html
-    - title: रोडमैप
-      url: /hi/Roadmap.html
-    - title: गोपनीयता नीति
-      url: /hi/Privacy.html
-  bn:
-    - title: অ্যান্ড্রয়েড অ্যাপ ডাউনলোড করুন
-      url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
-    - title: পিসি সার্ভার ডাউনলোড করুন
-      url: https://github.com/kitswas/VirtualGamePad-PC/releases
-    - title: GitHub-এ দেখুন
-      url: https://github.com/kitswas/VirtualGamePad/
-    - title: প্রশ্নাবলী
-      url: /bn/FAQ.html
-    - title: সমস্যা সমাধান
-      url: /bn/Troubleshooting.html
-    - title: অবদান রাখুন
-      url: /bn/Contributing.html
-    - title: রোডম্যাপ
-      url: /bn/Roadmap.html
-    - title: গোপনীয়তা নীতি
-      url: /bn/Privacy.html
 
 defaults:
   - scope:
