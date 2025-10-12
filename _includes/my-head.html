@@ -1,0 +1,71 @@
+<style>
+  .lang-switcher-dropdown {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 1em;
+  }
+  .lang-switcher-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background: #fff;
+    min-width: 120px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    margin-top: 2px;
+  }
+  .lang-switcher-dropdown:hover .lang-switcher-dropdown-content {
+    display: block;
+  }
+  .lang-switcher-dropdown-content a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #333;
+  }
+  .lang-switcher-dropdown-content a.active {
+    font-weight: bold;
+    background: #f0f0f0;
+  }
+</style>
+
+<meta
+  http-equiv="Content-Language"
+  content="{{ page.lang | default: site.default_lang }}"
+/>
+
+{% if page.lang == site.default_lang %}
+<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+{% else %}
+<link rel="canonical" href="{{ site.url }}/{{ page.lang }}{{ page.url }}" />
+{% endif %}
+<link
+  rel="alternate"
+  hreflang="{{ site.default_lang }}"
+  href="{{ site.url }}{{ page.url }}"
+/>
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href="{{ site.url }}{{ page.url }}"
+/>
+{% for lang in site.languages %}
+  {% capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ lang_href }}" />
+{% endfor %}
+
+<div class="lang-switcher-dropdown">
+  <span style="cursor: pointer">Language</span>
+  <div class="lang-switcher-dropdown-content">
+    {% for lang in site.languages %}
+      {% capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+      <a href="{{ lang_href }}" {% if page.lang == lang %}class="active"{% endif %}>{{ lang }}</a>
+    {% endfor %}
+  </div>
+</div>

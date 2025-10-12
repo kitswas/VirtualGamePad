@@ -5,6 +5,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
   - jekyll-include-cache
+  - jekyll-polyglot
 
 remote_theme: hydecorp/hydejack@v9.2.1
 
@@ -48,3 +49,20 @@ hydejack:
 
     # Set to `true` to allow visitors to switch between light and dark mode.
     icon: true
+
+# Internationalization (i18n) settings
+
+languages:
+  - en
+  - hi
+  - bn
+default_lang: en
+
+exclude_from_localizations:
+  - assets
+  - _includes
+  - _config.yml
+  - LICENCE.TXT
+
+parallel_localization: true
+url: https://kitswas.github.io/VirtualGamePad
