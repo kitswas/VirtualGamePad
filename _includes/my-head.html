@@ -40,31 +40,30 @@
   content="{{ page.lang | default: site.default_lang }}"
 />
 
-{% if page.lang == site.default_lang %}
-<link rel="canonical" href="{{ site.url }}{{ page.url }}" />
-{% else %}
-<link rel="canonical" href="{{ site.url }}/{{ page.lang }}{{ page.url }}" />
-{% endif %}
-<link
-  rel="alternate"
-  hreflang="{{ site.default_lang }}"
-  href="{{ site.url }}{{ page.url }}"
-/>
-<link
-  rel="alternate"
-  hreflang="x-default"
-  href="{{ site.url }}{{ page.url }}"
-/>
+{%- assign url = page.url -%}
+{%- assign last = url | split:'/' | last -%}
+{%- assign name = last | split:'.' | first -%}
+{%- assign is_index = name == 'index' -%}
+{%- assign base = site.baseurl | default: '' -%}
+{%- capture canonical_path -%}{{ base }}/{{ page.lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}{%- endcapture -%}
+<link rel="canonical" href="{{ site.url }}{{ canonical_path }}" />
+<link rel="alternate" hreflang="{{ site.default_lang }}" href="{{ site.url }}{{ base }}/{{ site.default_lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}" />
+<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ base }}/{{ site.default_lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}" />
 {% for lang in site.languages %}
-  {% capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+    {%- capture lang_href -%}{{ base }}/{{ lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}{%- endcapture -%}
   <link rel="alternate" hreflang="{{ lang }}" href="{{ lang_href }}" />
 {% endfor %}
 
 <div class="lang-switcher-dropdown">
   <span style="cursor: pointer">Language</span>
   <div class="lang-switcher-dropdown-content">
+    {%- assign url = page.url -%}
+    {%- assign last = url | split:'/' | last -%}
+    {%- assign name = last | split:'.' | first -%}
+    {%- assign is_index = name == 'index' -%}
+    {%- assign base = site.baseurl | default: '' -%}
     {% for lang in site.languages %}
-      {% capture lang_href %}{{site.baseurl}}/{% if lang != site.default_lang %}{{ lang }}/{% endif %}{% if page.permalink_lang[lang] != '/' %}{{page.permalink_lang[lang]}}{% endif %}{% endcapture %}
+      {%- capture lang_href -%}{{ base }}/{{ lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}{%- endcapture -%}
       <a href="{{ lang_href }}" {% if page.lang == lang %}class="active"{% endif %}>{{ lang }}</a>
     {% endfor %}
   </div>
