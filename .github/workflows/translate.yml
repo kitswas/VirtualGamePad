@@ -1,0 +1,157 @@
+name: Auto Translate Markdown
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  discover:
+    name: Discover Markdown Files
+    runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.find.outputs.files }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Find English markdown files in repo root
+        id: find
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=( *.md )
+          # Build JSON array, e.g. ["README.md","FAQ.md"]
+          printf -v json '["%s"' "${files[0]}"
+          for f in "${files[@]:1}"; do printf -v json '%s,"%s"' "$json" "$f"; done
+          json="$json]"
+          # Handle case of no files gracefully
+          if [ ${#files[@]} -eq 0 ]; then json='[]'; fi
+          echo "files=$json" >> "$GITHUB_OUTPUT"
+
+  translate:
+    name: Translate files (${{ matrix.source }} -> ${{ matrix.target }})
+    needs: discover
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        source: [en]
+        target: [bn, hi]
+        file: ${{ fromJSON(needs.discover.outputs.files) }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract front matter and body
+        id: extract
+        shell: bash
+        run: |
+          set -eo pipefail
+          file="${{ matrix.file }}"
+          target="${{ matrix.target }}"
+          hasfront=0
+          end=""
+          if [ "$(head -n1 "$file" | tr -d '\r')" = "---" ]; then
+            end=$(awk 'NR>1 && /^---[[:space:]]*$/ {print NR; exit}' "$file") || true
+            if [ -n "$end" ]; then
+              front=$(sed -n "2,$((end-1))p" "$file")
+              body=$(sed -n "$((end+1)),\$p" "$file")
+              # Replace or append lang key in front matter
+              if printf "%s\n" "$front" | grep -qi '^[[:space:]]*lang[[:space:]]*:'; then
+                front=$(printf "%s\n" "$front" | awk -v t="$target" 'BEGIN{IGNORECASE=1} { if ($0 ~ /^[[:space:]]*lang[[:space:]]*:/) print "lang: " t; else print }')
+              else
+                front="$front"$'\n'"lang: $target"
+              fi
+              hasfront=1
+            else
+              body=$(cat "$file")
+            fi
+          else
+            body=$(cat "$file")
+          fi
+          # Save body and (optionally) front to temp files
+          printf "%s" "$body" > body.tmp.md
+          if [ "$hasfront" = "1" ]; then
+            printf "%s\n" "$front" > front.tmp.yml
+          fi
+          # Export outputs
+          {
+            echo "hasfront=$hasfront"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Translate ${{ matrix.file }} to ${{ matrix.target }}
+        id: tr
+        uses: fabasoad/translation-action@v4
+        with:
+          provider: google
+          lang: ${{ matrix.source }}|${{ matrix.target }}
+          source: body.tmp.md
+
+      - name: Prepare translated file for upload
+        shell: bash
+        run: |
+          set -eo pipefail
+          mkdir -p "${{ matrix.target }}"
+          outfile="${{ matrix.target }}/${{ matrix.file }}"
+          if [ "${{ steps.extract.outputs.hasfront }}" = "1" ]; then
+            {
+              echo '---'
+              cat front.tmp.yml
+              echo '---'
+              printf "%s" "${{ steps.tr.outputs.text }}"
+            } > "$outfile"
+          else
+            printf "%s" "${{ steps.tr.outputs.text }}" > "$outfile"
+          fi
+
+      - name: Upload artifact (${{ matrix.target }}/${{ matrix.file }})
+        uses: actions/upload-artifact@v4
+        with:
+          name: translated-${{ matrix.target }}-${{ matrix.file }}
+          path: ${{ matrix.target }}/${{ matrix.file }}
+          if-no-files-found: error
+
+  assemble:
+    name: Assemble translations and create PR
+    needs: translate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download all translated artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: translations
+          merge-multiple: true
+
+      - name: Copy translations into repo
+        shell: bash
+        run: |
+          shopt -s globstar nullglob
+          # Move bn/* and hi/* into repository root preserving structure
+          for dir in translations/**/bn translations/**/hi; do
+            if [ -d "$dir" ]; then
+              cp -R "$dir" ./
+            fi
+          done
+          echo "Repo tree after merge:" && ls -R
+
+      - name: Create pull request with translated files
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "Auto-translate markdown files (en -> bn, hi)"
+          branch: "auto-translate/en-to-bn-hi"
+          title: "Auto-translate markdown files (en -> bn, hi)"
+          body: |
+            This PR contains auto-translated markdown files from English to:
+            - Bengali (bn)
+            - Hindi (hi)
+          labels: translation, automation
