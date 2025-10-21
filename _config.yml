@@ -59,7 +59,7 @@ languages:
   - bn
 default_lang: en
 
-exclude_from_localizations:
+exclude_from_localization:
   - assets
   - _includes
   - _config.yml

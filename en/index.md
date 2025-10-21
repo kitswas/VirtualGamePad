@@ -1,3 +1,8 @@
+---
+lang: en
+layout: default
+---
+
 # VirtualGamePad
 
 [![GitHub License](https://img.shields.io/github/license/kitswas/VirtualGamePad)
