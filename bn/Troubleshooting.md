@@ -15,7 +15,7 @@ layout: default
 সার্ভারে সংযোগে সমস্যা হলে ফায়ারওয়াল বন্ধ করুন বা সার্ভারের জন্য ব্যতিক্রম যোগ করুন।  
 Windows-এ প্রথমবার চালালে সার্ভারকে ফায়ারওয়াল দিয়ে যোগাযোগের অনুমতি দিতে বলা হবে।
 
-![Firewall](../assets/VGP_UAC_Dialog.png)
+![Firewall]({{ '/assets/VGP_UAC_Dialog.png' | relative_url }})
 
 **তবুও সমস্যা হলে, ফোনে hotspot চালু করুন এবং PC-কে এতে সংযুক্ত করুন।** (বা উল্টোটা, দুটোই চেষ্টা করুন)  
 তারপর সার্ভার রিস্টার্ট করুন এবং আবার সংযোগের চেষ্টা করুন।
@@ -26,15 +26,15 @@ _অ্যাপ কাজ না করলে অভিযোগ করার �
 
 সার্ভারের Preferences স্ক্রিন দেখুন। বিভিন্ন ইনপুট মোডের (Keyboard/Mouse বা Gamepad) আলাদা শর্ত আছে।
 
-![Screenshot of the Preferences screen at the time of writing](../assets/Server_preferences_Windows.png)
+![Screenshot of the Preferences screen at the time of writing]({{ '/assets/Server_preferences_Windows.png' | relative_url }})
 
 Windows-এ Keyboard/Mouse মোড সরাসরি কাজ করে। Gamepad মোডের জন্য:
 
 1. অ্যাডমিন privilege (Right click করে Run as admin)
 2. App sideloading (developer mode) চালু (Settings > System > For developers > Developer mode)
 
-![Settings App sideloading](../assets/settings_app_sideloading.png)  
-![Turn on developer mode](../assets/developer_mode_UAC.png)
+![Settings App sideloading]({{ '/assets/settings_app_sideloading.png' | relative_url }})  
+![Turn on developer mode]({{ '/assets/developer_mode_UAC.png' | relative_url }})
 
 Linux-এ সার্ভারের জন্য `/dev/uinput`-এ rw access লাগবে। একাধিক উপায় আছে, অ্যাপে দেখুন।
 
@@ -56,4 +56,4 @@ Linux-এ সার্ভারের জন্য `/dev/uinput`-এ rw access �
 
 Tech Support Cheat Sheet — [XKCD 627](https://xkcd.com/627/):
 
-![XKCD 627](../assets/tech_support_cheat_sheet_2x.png)
+![XKCD 627]({{ '/assets/tech_support_cheat_sheet_2x.png' | relative_url }})

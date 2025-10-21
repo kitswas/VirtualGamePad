@@ -56,7 +56,7 @@ layout: default
 
 কোডের আয়ু:
 
-![XKCD 2730](../assets/code_lifespan_2x.png)
+![XKCD 2730]({{ '/assets/code_lifespan_2x.png' | relative_url }})
 
 > নিশ্চয়ই (কেউ/সবাই) (এই আর্কিটেকচারের নমনীয়তা ও উপযোগিতা বুঝবে/অনেক শ্রম দিয়ে এই ২০ মিনিটে লেখা জঞ্জাল সংরক্ষণ ও আপডেট করবে)
 > — [XKCD 2730](https://xkcd.com/2730/)

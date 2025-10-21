@@ -36,7 +36,7 @@ Here the the steps:
 
 The following image shows the app connected via USB.
 
-![USB Tethering](assets/VGP_USB_Tethering.png)
+![USB Tethering]({{ '/assets/VGP_USB_Tethering.png' | relative_url }})
 
 ## The default mapping doesn't work for me. What do I do?
 
@@ -45,7 +45,7 @@ You can:
 1. Change the controls in-game, if the game supports it.
 2. Use the profile editor in the server to remap the controls.
 
-![Profile Editor](assets/VGP_Profile_Editor.png)
+![Profile Editor]({{ '/assets/VGP_Profile_Editor.png' | relative_url }})
 
 With a bit of remapping, almost everything is playable.  
 

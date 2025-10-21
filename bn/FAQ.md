@@ -34,7 +34,7 @@ USB সাপোর্ট ইতিমধ্যে আছে।
 
 নিচের ছবিতে USB দিয়ে অ্যাপ সংযুক্ত দেখানো হয়েছে।
 
-![USB Tethering](../assets/VGP_USB_Tethering.png)
+![USB Tethering]({{ '/assets/VGP_USB_Tethering.png' | relative_url }})
 
 ## ডিফল্ট ম্যাপিং কাজ করছে না। কী করব?
 
@@ -43,7 +43,7 @@ USB সাপোর্ট ইতিমধ্যে আছে।
 1. গেমে কন্ট্রোল পরিবর্তন করুন, যদি গেমে সাপোর্ট থাকে।
 2. সার্ভারের প্রোফাইল এডিটর ব্যবহার করে কন্ট্রোল রিম্যাপ করুন।
 
-![Profile Editor](../assets/VGP_Profile_Editor.png)
+![Profile Editor]({{ '/assets/VGP_Profile_Editor.png' | relative_url }})
 
 কিছুটা রিম্যাপিং করলে প্রায় সবকিছুই খেলা যায়।  
 

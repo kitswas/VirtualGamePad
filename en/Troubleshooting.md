@@ -17,7 +17,7 @@ If your problem is not covered here, [file an issue](FAQ.md#bug-reports-and-feat
 If you're having trouble connecting to the server, try disabling your firewall or adding an exception for the server.  
 On Windows, you will be prompted to allow the server to communicate through the firewall when you run it for the first time.
 
-![Firewall](assets/VGP_UAC_Dialog.png)
+![Firewall]({{ '/assets/VGP_UAC_Dialog.png' | relative_url }})
 
 **If you're still having trouble, start a hotspot on your phone and connect your PC to it.** (or vice-versa, try both)  
 Then, restart the server and try connecting again.
@@ -28,15 +28,15 @@ _Do this before complaining about the app not working._
 
 Check the Preferences screen in the server. Different input methods (Keyboard/Mouse or Gamepad) have different requirements.
 
-![Screenshot of the Preferences screen at the time of writing](assets/Server_preferences_Windows.png)
+![Screenshot of the Preferences screen at the time of writing]({{ '/assets/Server_preferences_Windows.png' | relative_url }})
 
 On Windows, the Keyboard/Mouse mode works out of the box. The Gamepad mode requires:
 
 1. The admin privilege. (Right click and Run as admin)
 2. App sideloading (developer mode) enabled. [(Settings > System > For developers > Developer mode)](ms-settings:developers).
 
-![Settings App sideloading](assets/settings_app_sideloading.png)  
-![Turn on developer mode](assets/developer_mode_UAC.png)
+![Settings App sideloading]({{ '/assets/settings_app_sideloading.png' | relative_url }})  
+![Turn on developer mode]({{ '/assets/developer_mode_UAC.png' | relative_url }})
 
 On Linux, the server requires rw access to `/dev/uinput`. Multiple ways to achieve this are described in-app.
 

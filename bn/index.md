@@ -30,13 +30,13 @@ Wi-Fi ([বা USB](FAQ.md#usb-connection)) দিয়ে সংযোগ ক�
 
 Android 12 ডিভাইসে VirtualGamePad:
 
-![VirtualGamePad](../assets/VGP.svg)
+![VirtualGamePad]({{ '/assets/VGP.svg' | relative_url }})
 
-![VirtualGamePad Dark](../assets/VGP_night.svg)
+![VirtualGamePad Dark]({{ '/assets/VGP_night.svg' | relative_url }})
 
 PC-তে VirtualGamePad Server:
 
-![VirtualGamePad Server](../assets/VGP_Server.png)
+![VirtualGamePad Server]({{ '/assets/VGP_Server.png' | relative_url }})
 
 ## ইনস্টলেশন
 
@@ -44,18 +44,18 @@ PC-তে VirtualGamePad Server:
 
 নতুন আপডেট জানতে GitHub-এ স্টার ⭐ বা ওয়াচ 👁️ দিন।
 
-![GitHub Star and Watch](../assets/GitHub_Star_Watch.png)
+![GitHub Star and Watch]({{ '/assets/GitHub_Star_Watch.png' | relative_url }})
 
 ### Android
 
 F-Droid এবং GitHub-এ পাওয়া যায়।
 
-[<img src="../assets/badge_F_Droid_download.svg" alt="Get it on F-Droid" style="height:4em;"> ![Downloads last month](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fkitswas%2Ffdroid-metrics-dashboard%2Fraw%2Frefs%2Fheads%2Fmain%2Fprocessed%2Fmonthly%2Fio.github.kitswas.virtualgamepadmobile.json&query=%24.total_downloads&logo=fdroid&label=Downloads%20last%20month)
+[<img src="{{ '/assets/badge_F_Droid_download.svg' | relative_url }}" alt="Get it on F-Droid" style="height:4em;"> ![Downloads last month](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fkitswas%2Ffdroid-metrics-dashboard%2Fraw%2Frefs%2Fheads%2Fmain%2Fprocessed%2Fmonthly%2Fio.github.kitswas.virtualgamepadmobile.json&query=%24.total_downloads&logo=fdroid&label=Downloads%20last%20month)
 ![F-Droid latest version](https://img.shields.io/f-droid/v/io.github.kitswas.virtualgamepadmobile?logo=f-droid)](https://f-droid.org/packages/io.github.kitswas.virtualgamepadmobile/)
 
 অথবা, [releases page](https://github.com/kitswas/VirtualGamePad-Mobile/releases) থেকে সর্বশেষ APK ডাউনলোড করুন এবং ফোনে ইনস্টল করুন।  
 
-[<img src="../assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-Mobile/total)
+[<img src="{{ '/assets/badge_Github_download.svg' | relative_url }}" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-Mobile/total)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-Mobile?logo=github)](https://github.com/kitswas/VirtualGamePad-Mobile/releases/latest)
 
 ### Windows
@@ -63,7 +63,7 @@ F-Droid এবং GitHub-এ পাওয়া যায়।
 [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases) থেকে সর্বশেষ archive(Virtual-GamePad-Windows.zip) ডাউনলোড করুন, extract করুন এবং `VGamepadPC.exe` চালান।  
 Experimental Gamepad Input mode-এর জন্য অতিরিক্ত কিছু লাগতে পারে, Preferences পেজে দেখুন।  
 
-[<img src="../assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
+[<img src="{{ '/assets/badge_Github_download.svg' | relative_url }}" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 ### Linux
@@ -72,7 +72,7 @@ Experimental Gamepad Input mode-এর জন্য অতিরিক্ত ক
 Qt যদি 'xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin' বলে, `sudo apt install libxcb-cursor0` চালান।  
 Preferences পেজে বিস্তারিত দেখুন।  
 
-[<img src="../assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
+[<img src="{{ '/assets/badge_Github_download.svg' | relative_url }}" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 Ubuntu/Debian-এ পরীক্ষা করা হয়েছে। অন্য distribution-এও কাজ করার কথা।
@@ -89,7 +89,7 @@ Android অ্যাপ থেকে সার্ভারের IP ও port দ
 
 ## সোর্স কোড
 
-VirtualGamePad ওপেন সোর্স এবং [GPLv3 licence](../LICENCE.TXT)-এ লাইসেন্সকৃত।
+VirtualGamePad ওপেন সোর্স এবং [GPLv3 licence]({{ '/LICENCE.TXT' | relative_url }})-এ লাইসেন্সকৃত।
 
 VirtualGamePad ওপেন সোর্স লাইব্রেরি ও অ্যাসেট ব্যবহার করে, যেগুলোর নিজস্ব লাইসেন্স আছে।
 

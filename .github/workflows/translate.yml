@@ -20,18 +20,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Find English markdown files in repo root
+      - name: Find English markdown files under en/
         id: find
         shell: bash
         run: |
           shopt -s nullglob
-          files=( *.md )
-          # Build JSON array, e.g. ["README.md","FAQ.md"]
-          printf -v json '["%s"' "${files[0]}"
-          for f in "${files[@]:1}"; do printf -v json '%s,"%s"' "$json" "$f"; done
-          json="$json]"
-          # Handle case of no files gracefully
-          if [ ${#files[@]} -eq 0 ]; then json='[]'; fi
+          # Find all Markdown files recursively in en/
+          mapfile -d '' files < <(find en -type f -name "*.md" -print0 | sort -z)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "files=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          # Build JSON array, e.g. ["en/README.md","en/FAQ.md",...]
+          json="["
+          sep=""
+          for f in "${files[@]}"; do
+            # strip trailing nulls
+            f="${f%\0}"
+            json+="$sep\"$f\""
+            sep="," 
+          done
+          json+="]"
           echo "files=$json" >> "$GITHUB_OUTPUT"
 
   translate:
@@ -76,6 +85,9 @@ jobs:
           else
             body=$(cat "$file")
           fi
+          # Compute relative path from en/
+          rel="$file"
+          case "$rel" in en/*) rel="${rel#en/}" ;; esac
           # Save body and (optionally) front to temp files
           printf "%s" "$body" > body.tmp.md
           if [ "$hasfront" = "1" ]; then
@@ -84,6 +96,7 @@ jobs:
           # Export outputs
           {
             echo "hasfront=$hasfront"
+            echo "relpath=$rel"
           } >> "$GITHUB_OUTPUT"
 
       - name: Translate ${{ matrix.file }} to ${{ matrix.target }}
@@ -98,8 +111,8 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
-          mkdir -p "${{ matrix.target }}"
-          outfile="${{ matrix.target }}/${{ matrix.file }}"
+          outfile="${{ matrix.target }}/${{ steps.extract.outputs.relpath }}"
+          mkdir -p "$(dirname "$outfile")"
           if [ "${{ steps.extract.outputs.hasfront }}" = "1" ]; then
             {
               echo '---'
@@ -111,11 +124,11 @@ jobs:
             printf "%s" "${{ steps.tr.outputs.text }}" > "$outfile"
           fi
 
-      - name: Upload artifact (${{ matrix.target }}/${{ matrix.file }})
+      - name: Upload artifact directory (${{ matrix.target }}/)
         uses: actions/upload-artifact@v4
         with:
-          name: translated-${{ matrix.target }}-${{ matrix.file }}
-          path: ${{ matrix.target }}/${{ matrix.file }}
+          name: translated-${{ matrix.target }}
+          path: ${{ matrix.target }}/
           if-no-files-found: error
 
   assemble:
@@ -136,10 +149,11 @@ jobs:
         shell: bash
         run: |
           shopt -s globstar nullglob
-          # Move bn/* and hi/* into repository root preserving structure
-          for dir in translations/**/bn translations/**/hi; do
-            if [ -d "$dir" ]; then
-              cp -R "$dir" ./
+          # Merge bn/* and hi/* into repository root preserving structure
+          for lang in bn hi; do
+            if [ -d "translations/$lang" ]; then
+              mkdir -p "./$lang"
+              cp -R "translations/$lang/." "./$lang/"
             fi
           done
           echo "Repo tree after merge:" && ls -R
