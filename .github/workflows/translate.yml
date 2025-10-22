@@ -57,7 +57,7 @@ jobs:
       fail-fast: false
       matrix:
         source: [en]
-        target: [bn, hi]
+        target: [bn, hi, te]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4

@@ -39,6 +39,7 @@ languages:
   - en
   - hi
   - bn
+  - te
 default_lang: en
 
 exclude_from_localization:

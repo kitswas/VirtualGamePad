@@ -49,3 +49,20 @@ bn:
     url: /bn/Roadmap.html
   - title: গোপনীয়তা নীতি
     url: /bn/Privacy.html
+te:
+  - title: Android యాప్ డౌన్లోడ్ చేయండి
+    url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
+  - title: PC సర్వర్ డౌన్లోడ్ చేయండి
+    url: https://github.com/kitswas/VirtualGamePad-PC/releases
+  - title: GitHub లో వీక్షించండి
+    url: https://github.com/kitswas/VirtualGamePad/
+  - title: తరచుగా అడిగే ప్రశ్నలు
+    url: /te/FAQ.html
+  - title: సమస్య పరిష్కారం
+    url: /te/Troubleshooting.html
+  - title: సహకారం చేయండి
+    url: /te/Contributing.html
+  - title: రోడ్‌మ్యాప్
+    url: /te/Roadmap.html
+  - title: గోప్యతా విధానం
+    url: /te/Privacy.html
