@@ -60,29 +60,25 @@ def translate_token_tree(token, source_lang, target_lang, translator):
             return
 
         if text.strip():
-            # Preserve leading and trailing whitespace
-            leading_ws = len(text) - len(text.lstrip())
-            trailing_ws = len(text) - len(text.rstrip())
-            text_to_translate = text.strip()
+            # Preserve leading and trailing whitespace using regex
+            match = re.match(r"^(\s*)(.*?)(\s*)$", text, re.DOTALL)
+            if match:
+                leading_ws, text_to_translate, trailing_ws = match.groups()
 
-            try:
-                translated = ts.translate_text(
-                    text_to_translate,
-                    translator=translator,
-                    from_language=source_lang,
-                    to_language=target_lang,
-                )
-                # Restore original whitespace
-                if leading_ws > 0:
-                    translated = text[:leading_ws] + translated
-                if trailing_ws > 0:
-                    translated = translated + text[-trailing_ws:]
-                token.content = translated
-            except Exception as e:
-                print(
-                    f"Warning: Failed to translate text '{text[:50]}...': {e}",
-                    file=sys.stderr,
-                )
+                try:
+                    translated = ts.translate_text(
+                        text_to_translate,
+                        translator=translator,
+                        from_language=source_lang,
+                        to_language=target_lang,
+                    )
+                    # Restore original whitespace (including newlines)
+                    token.content = leading_ws + translated + trailing_ws
+                except Exception as e:
+                    print(
+                        f"Warning: Failed to translate text '{text}...': {e}",
+                        file=sys.stderr,
+                    )
     elif isinstance(token, InlineCode):
         # Skip translation of inline code - it's code, not text
         return
