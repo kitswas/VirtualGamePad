@@ -68,7 +68,7 @@ jobs:
           python-version: "3.x"
 
       - name: Install Python dependencies
-        run: pip install translators python-frontmatter mistletoe mdformat
+        run: pip install translators python-frontmatter markdown-it-py mdformat
 
       - name: Translate all files to ${{ matrix.target }}
         shell: bash

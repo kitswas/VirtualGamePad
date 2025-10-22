@@ -2,11 +2,11 @@
 """
 Translate markdown files using the translators library.
 
-This script parses markdown to AST using mistletoe, translates text nodes with translate_text,
-and renders back to markdown to ensure proper handling of markdown syntax during translation.
+This script parses markdown to AST using markdown-it-py, translates text nodes with translate_text,
+and renders back to markdown using mdformat's built-in renderer.
 
 Dependencies:
-    uv pip install translators python-frontmatter mistletoe mdformat
+    uv pip install translators python-frontmatter markdown-it-py mdformat
 
 Usage:
     uv run translate.py --source-file en/index.md --target-file bn/index.md --source-lang en --target-lang bn --translator google
@@ -20,71 +20,94 @@ import sys
 import frontmatter
 import re
 import translators as ts
-import mistletoe
-from mistletoe import Document
-from mistletoe.markdown_renderer import MarkdownRenderer
+from markdown_it import MarkdownIt
+from mdformat.renderer import MDRenderer
+
+# Compile skip patterns once and reuse
+SKIP_PATTERNS = [
+    re.compile(r"\{:[^}]*\}"),  # Jekyll tags: {:toc}, {:lead}
+    re.compile(r"\{\{.*?\}\}"),  # Liquid templates: {{ ... }}
+    re.compile(r"^<[^>]+>.*"),  # HTML tags
+    re.compile(r"relative_url"),  # relative_url filter
+    re.compile(r"^!\[.*?\]\(.*?\)"),  # Image markdown: ![alt](url)
+    re.compile(r"^\[.*?\]\(.*?\)"),  # Link markdown: [text](url)
+    re.compile(r"^https?://.*"),  # URLs
+    re.compile(r"`.*?`"),  # Inline code: `...`
+    re.compile(r"`{3}.*?`{3}"),  # Code blocks
+    re.compile(r"^\$.*\$$"),  # Inline math: $...$
+    re.compile(r"^\$\$.*\$\$$"),  # Display math: $$...$$
+]
 
 
-def translate_token_tree(token, source_lang, target_lang, translator):
+class CustomMDRenderer(MDRenderer):
+    """MDRenderer that avoids escaping content matching SKIP_PATTERNS.
+
+    The MDRenderer from mdformat may escape some characters aggressively. We
+    override the text renderer to leave token.content alone when it matches
+    one of the skip patterns (Jekyll/Liquid tags, math, URLs, asset paths,
+    image/link markdown, etc.).
     """
-    Recursively translate text nodes in the mistletoe Token tree.
 
-    Skips translation for:
-    - Jekyll tags: {:toc}, {:lead}, etc.
-    - Liquid template syntax: {{ ... }}
-    - HTML tags and raw HTML content
-    - Code blocks and inline code
-    - Image markdown syntax ![...](...)
-    - Link URLs
+    def text(self, tokens, idx, options, env):
+        content = tokens[idx].content
+        # If the entire token content matches any skip pattern, return it unchanged
+        s = content.strip()
+        for patt in SKIP_PATTERNS:
+            if patt.fullmatch(s):
+                return content
+        # Otherwise, fall back to default behavior
+        return super().text(tokens, idx, options, env)
+
+
+def translate_tokens(tokens, source_lang, target_lang, translator):
     """
-    # Import here to avoid issues if mistletoe internals change
-    from mistletoe.span_token import RawText
-    from mistletoe.span_token import InlineCode
+    Recursively translate text in tokens from markdown-it-py AST.
 
-    if isinstance(token, RawText):
-        text = token.content
+    Args:
+        tokens: List of Token objects from markdown-it-py
+        source_lang: Source language code
+        target_lang: Target language code
+        translator: Translation service name
+    """
+    for token in tokens:
+        # Log token type and content for debugging
+        token_type = token.type
+        token_content = token.content[:100] if token.content else ""
+        print(
+            f"DEBUG: Processing token: {token_type} - Content: {repr(token_content)}",
+            file=sys.stderr,
+        )
 
-        # Skip translation for various non-translatable patterns
-        skip_patterns = [
-            r"\{:[^}]*\}",  # Jekyll tags: {:toc}, {:lead}
-            r"\{\{.*?\}\}",  # Liquid templates: {{ ... }}
-            r"^<[^>]+>.*",  # HTML tags
-            r"relative_url",  # relative_url filter
-            r"^!\[.*?\]\(.*?\)",  # Image markdown: ![alt](url)
-            r"^\[.*?\]\(.*?\)",  # Link markdown: [text](url)
-            r"^https?://.*",  # URLs
-            r"^/assets/.*",  # Asset paths
-        ]
+        # Translate content if it's a text token
+        if token.type == "text" and token.content.strip():
+            text = token.content
 
-        if any(re.fullmatch(pattern, text.strip()) for pattern in skip_patterns):
-            return
+            # Skip translation for various non-translatable patterns
+            s = text.strip()
+            if not any(patt.fullmatch(s) for patt in SKIP_PATTERNS):
+                # Preserve leading and trailing whitespace using regex
+                match = re.match(r"^(\s*)(.*?)(\s*)$", text, re.DOTALL)
+                if match:
+                    leading_ws, text_to_translate, trailing_ws = match.groups()
 
-        if text.strip():
-            # Preserve leading and trailing whitespace using regex
-            match = re.match(r"^(\s*)(.*?)(\s*)$", text, re.DOTALL)
-            if match:
-                leading_ws, text_to_translate, trailing_ws = match.groups()
+                    try:
+                        translated = ts.translate_text(
+                            text_to_translate,
+                            translator=translator,
+                            from_language=source_lang,
+                            to_language=target_lang,
+                        )
+                        # Restore original whitespace (including newlines)
+                        token.content = leading_ws + translated + trailing_ws
+                    except Exception as e:
+                        print(
+                            f"Warning: Failed to translate text '{text}...': {e}",
+                            file=sys.stderr,
+                        )
 
-                try:
-                    translated = ts.translate_text(
-                        text_to_translate,
-                        translator=translator,
-                        from_language=source_lang,
-                        to_language=target_lang,
-                    )
-                    # Restore original whitespace (including newlines)
-                    token.content = leading_ws + translated + trailing_ws
-                except Exception as e:
-                    print(
-                        f"Warning: Failed to translate text '{text}...': {e}",
-                        file=sys.stderr,
-                    )
-    elif isinstance(token, InlineCode):
-        # Skip translation of inline code - it's code, not text
-        return
-    elif hasattr(token, "children") and isinstance(token.children, list):
-        for child in token.children:
-            translate_token_tree(child, source_lang, target_lang, translator)
+        # Recursively process children tokens
+        if token.children:
+            translate_tokens(token.children, source_lang, target_lang, translator)
 
 
 def translate_markdown_content(content, source_lang, target_lang, translator):
@@ -92,10 +115,10 @@ def translate_markdown_content(content, source_lang, target_lang, translator):
     Translate markdown content by parsing to AST, translating text nodes, and rendering back.
 
     This function:
-    1. Parses markdown to an Abstract Syntax Tree (AST) using mistletoe
-    2. Recursively traverses the tree and translates RawText nodes
+    1. Parses markdown to an Abstract Syntax Tree (AST) using markdown-it-py
+    2. Recursively traverses the tree and translates text nodes
     3. Skips non-translatable content (code, HTML, Jekyll/Liquid syntax, URLs)
-    4. Renders the modified AST back to markdown
+    4. Renders the modified AST back to markdown using mdformat's built-in renderer
 
     Args:
         content: Raw markdown content to translate
@@ -107,8 +130,9 @@ def translate_markdown_content(content, source_lang, target_lang, translator):
         Translated markdown content as a string
     """
     try:
-        # Parse markdown to AST
-        doc: Document = mistletoe.Document(content)
+        # Parse markdown to AST using markdown-it-py
+        md = MarkdownIt()
+        tokens = md.parse(content)
     except Exception as e:
         print(
             f"Warning: Failed to parse markdown: {e}",
@@ -117,12 +141,50 @@ def translate_markdown_content(content, source_lang, target_lang, translator):
         return content
 
     # Recursively translate text nodes in the token tree
-    translate_token_tree(doc, source_lang, target_lang, translator)
+    translate_tokens(tokens, source_lang, target_lang, translator)
 
-    # Render back to markdown (preserve whitespace)
+    # For tokens matching SKIP_PATTERNS, replace their content with a
+    # unique placeholder so the renderer can't mangle/escape them, then
+    # restore the originals after rendering. This preserves the exact
+    # original text for skip-pattern tokens.
+    placeholder_map = {}
+    counter = 0
+
+    def inject_placeholders(toks):
+        nonlocal counter
+        for tk in toks:
+            if getattr(tk, "content", None):
+                s = tk.content.strip()
+                for patt in SKIP_PATTERNS:
+                    if patt.fullmatch(s):
+                        # use an alphanumeric-only placeholder to avoid mdformat
+                        # escaping underscores or other punctuation
+                        ph = f"VGPPLACEHOLDER{counter}"
+                        placeholder_map[ph] = tk.content
+                        tk.content = ph
+                        counter += 1
+                        break
+            if getattr(tk, "children", None):
+                inject_placeholders(tk.children)
+
+    inject_placeholders(tokens)
+
+    # Render back to markdown using mdformat's built-in renderer
     try:
-        renderer = MarkdownRenderer(normalize_whitespace=False)
-        return renderer.render(doc)
+        renderer = CustomMDRenderer()
+        options = {
+            "number": True,  # switch on consecutive numbering of ordered lists
+            "end-of-line": "keep",
+        }
+        env = {}
+        rendered = renderer.render(tokens, options, env)
+
+        # Restore placeholders with the original raw content
+        if placeholder_map:
+            for ph, original in placeholder_map.items():
+                rendered = rendered.replace(ph, original)
+
+        return rendered
     except Exception as e:
         print(
             f"Warning: Failed to render markdown: {e}",
