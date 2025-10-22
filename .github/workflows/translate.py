@@ -46,13 +46,23 @@ def translate_token_tree(token, source_lang, target_lang, translator):
         ):
             return
         if text.strip():
+            # Preserve leading and trailing whitespace
+            leading_ws = len(text) - len(text.lstrip())
+            trailing_ws = len(text) - len(text.rstrip())
+            text_to_translate = text.strip()
+
             try:
                 translated = ts.translate_text(
-                    text,
+                    text_to_translate,
                     translator=translator,
                     from_language=source_lang,
                     to_language=target_lang,
                 )
+                # Restore original whitespace
+                if leading_ws > 0:
+                    translated = text[:leading_ws] + translated
+                if trailing_ws > 0:
+                    translated = translated + text[-trailing_ws:]
                 token.content = translated
             except Exception as e:
                 print(
@@ -74,8 +84,8 @@ def translate_markdown_content(content, source_lang, target_lang, translator):
     # Recursively translate text nodes in the token tree
     translate_token_tree(doc, source_lang, target_lang, translator)
 
-    # Render back to markdown
-    renderer = MarkdownRenderer(normalize_whitespace=True)
+    # Render back to markdown (preserve whitespace)
+    renderer = MarkdownRenderer(normalize_whitespace=False)
     return renderer.render(doc)
 
 

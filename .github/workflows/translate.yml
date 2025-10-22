@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "en/**"
+      - ".github/workflows/translate.*"
   pull_request:
     branches: [main]
     paths:
