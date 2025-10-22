@@ -70,9 +70,6 @@ A lower polling interval will make the gamepad feel more responsive, but it will
 
 On the flip side, it is easier to pull off combos with a higher polling interval.
 
-> [!TIP]  
-> Think automatic rifle (low polling interval) vs a pistol (high polling interval).
-
 ### High latency (Often the main culprit)
 
 In plain English, this means that the network delay is too high.
