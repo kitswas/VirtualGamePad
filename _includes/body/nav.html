@@ -7,8 +7,8 @@
 include.lang (if caller passes it) 2) jekyll-polyglot's site.active_lang 3)
 page.lang 4) site.default_lang {%- endcomment -%} {% assign current_lang =
 include.lang | default: site.active_lang | default: page.lang | default:
-site.default_lang %} {% if current_lang == 'en' %} {% assign menu = site.menu.en
-%} {% else %} {% assign menu = site.data.menu-i18n[current_lang] %} {% endif %}
+site.default_lang %} {%- assign menus = site.data['menu-i18n'] -%} {%- assign
+menu = menus[current_lang] | default: menus[site.default_lang] -%}
 
 <ul>
   {% for node in menu %}

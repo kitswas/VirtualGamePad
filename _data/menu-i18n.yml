@@ -1,3 +1,20 @@
+en:
+  - title: Download Android App
+    url: https://github.com/kitswas/VirtualGamePad-Mobile/releases
+  - title: Download PC Server
+    url: https://github.com/kitswas/VirtualGamePad-PC/releases
+  - title: View on GitHub
+    url: https://github.com/kitswas/VirtualGamePad/
+  - title: FAQ
+    url: /en/FAQ.html
+  - title: Troubleshooting
+    url: /en/Troubleshooting.html
+  - title: Contribute
+    url: /en/Contributing.html
+  - title: Roadmap
+    url: /en/Roadmap.html
+  - title: Privacy Policy
+    url: /en/Privacy.html
 hi:
   - title: एंड्रॉइड ऐप डाउनलोड करें
     url: https://github.com/kitswas/VirtualGamePad-Mobile/releases

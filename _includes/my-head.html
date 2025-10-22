@@ -37,34 +37,49 @@
 
 <meta
   http-equiv="Content-Language"
-  content="{{ page.lang | default: site.default_lang }}"
+  content="{{ page.lang | default: site.active_lang | default: site.default_lang }}"
 />
 
-{%- assign url = page.url -%}
-{%- assign last = url | split:'/' | last -%}
-{%- assign name = last | split:'.' | first -%}
-{%- assign is_index = name == 'index' -%}
-{%- assign base = site.baseurl | default: '' -%}
-{%- capture canonical_path -%}{{ base }}/{{ page.lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}{%- endcapture -%}
-<link rel="canonical" href="{{ site.url }}{{ canonical_path }}" />
-<link rel="alternate" hreflang="{{ site.default_lang }}" href="{{ site.url }}{{ base }}/{{ site.default_lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}" />
-<link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ base }}/{{ site.default_lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}" />
+{%- assign current_lang = page.lang | default: site.active_lang | default: site.default_lang -%}
+{%- assign stub = page.url | default: '/' -%}
+{%- comment -%} Strip the current language prefix so we can rebuild URLs per language. {%- endcomment -%}
+{%- if stub == '' -%}{%- assign stub = '/' -%}{%- endif -%}
+{%- for lang in site.languages -%}
+  {%- assign prefix = '/' | append: lang -%}
+  {%- assign parts = stub | split: prefix -%}
+  {%- if parts[0] == '' -%}
+    {%- assign stub = parts[1] | default: '/' -%}
+    {%- if stub == '' -%}{%- assign stub = '/' -%}{%- endif -%}
+    {%- break -%}
+  {%- endif -%}
+{%- endfor -%}
+
+<link rel="canonical" href="{{ page.url | absolute_url }}" />
+
 {% for lang in site.languages %}
-    {%- capture lang_href -%}{{ base }}/{{ lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}{%- endcapture -%}
-  <link rel="alternate" hreflang="{{ lang }}" href="{{ lang_href }}" />
+  {%- assign lang_href = '/' | append: lang -%}
+  {%- if stub == '/' -%}
+    {%- assign lang_href = lang_href | append: '/' -%}
+  {%- else -%}
+    {%- assign lang_href = lang_href | append: stub -%}
+  {%- endif -%}
+  <link rel="alternate" hreflang="{{ lang }}" href="{{ lang_href | absolute_url }}" />
+  {%- if lang == site.default_lang -%}
+    <link rel="alternate" hreflang="x-default" href="{{ lang_href | absolute_url }}" />
+  {%- endif -%}
 {% endfor %}
 
-<div class="lang-switcher-dropdown">
+<div class="lang-switcher-dropdown" role="navigation" aria-label="Language selector">
   <span style="cursor: pointer">Language</span>
   <div class="lang-switcher-dropdown-content">
-    {%- assign url = page.url -%}
-    {%- assign last = url | split:'/' | last -%}
-    {%- assign name = last | split:'.' | first -%}
-    {%- assign is_index = name == 'index' -%}
-    {%- assign base = site.baseurl | default: '' -%}
     {% for lang in site.languages %}
-      {%- capture lang_href -%}{{ base }}/{{ lang }}/{% if is_index %}index.html{% else %}{{ name }}.html{% endif %}{%- endcapture -%}
-      <a href="{{ lang_href }}" {% if page.lang == lang %}class="active"{% endif %}>{{ lang }}</a>
+      {%- assign lang_href = '/' | append: lang -%}
+      {%- if stub == '/' -%}
+        {%- assign lang_href = lang_href | append: '/' -%}
+      {%- else -%}
+        {%- assign lang_href = lang_href | append: stub -%}
+      {%- endif -%}
+      <a href="{{ lang_href | relative_url }}" {% if current_lang == lang %}class="active"{% endif %}>{{ lang }}</a>
     {% endfor %}
   </div>
 </div>
