@@ -6,6 +6,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-polyglot
   - jekyll-include-cache
+  - jekyll-spaceship
 
 remote_theme: hydecorp/hydejack@v9.2.1
 
