@@ -6,6 +6,7 @@ on:
     paths:
       - "en/**"
       - ".github/workflows/translate.*"
+      - ".github/prompts/*.txt"
   pull_request:
     branches: [main]
     paths:
@@ -15,6 +16,7 @@ on:
 permissions:
   contents: write
   pull-requests: write
+  models: read
 
 jobs:
   discover:
@@ -58,48 +60,80 @@ jobs:
       matrix:
         source: [en]
         target: [bn, hi, te]
+        file: ${{ fromJson(needs.discover.outputs.files) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.x"
-
-      - name: Install Python dependencies
-        run: pip install translators python-frontmatter markdown-it-py mdformat
-
-      - name: Translate all files to ${{ matrix.target }}
-        shell: bash
-        env:
-          FILES: ${{ needs.discover.outputs.files }}
+      - name: Compute target file path
+        id: paths
         run: |
-          set -eo pipefail
-          files=$(echo "$FILES" | jq -r '.[]')
-          for file in $files; do
-            # Compute relative path from en/
-            rel="$file"
-            case "$rel" in en/*) rel="${rel#en/}" ;; esac
-            # Create target directory
-            mkdir -p "${{ matrix.target }}/$(dirname "$rel")"
-            # Translate using Python script
-            python3 .github/workflows/translate.py \
-              --source-file $file \
-              --target-file ${{ matrix.target }}/$rel \
-              --source-lang ${{ matrix.source }} \
-              --target-lang ${{ matrix.target }} \
-              --translator google
-          done
+          source_file="${{ matrix.file }}"
+          # Extract relative path from en/
+          rel_path="${source_file#en/}"
+          target_file="${{ matrix.target }}/${rel_path}"
+          echo "rel_path=${rel_path}" >> "$GITHUB_OUTPUT"
+          echo "target_file=${target_file}" >> "$GITHUB_OUTPUT"
+
+      - name: Map language code to full name
+        id: lang_map
+        run: |
+          case "${{ matrix.target }}" in
+            bn) echo "lang_name=Bengali" >> "$GITHUB_OUTPUT" ;;
+            hi) echo "lang_name=Hindi" >> "$GITHUB_OUTPUT" ;;
+            te) echo "lang_name=Telugu" >> "$GITHUB_OUTPUT" ;;
+            *) echo "lang_name=${{ matrix.target }}" >> "$GITHUB_OUTPUT" ;;
+          esac
+
+      # Add random delay to reduce rate limiting issues
+      - name: Random delay
+        run: |
+          delay=$(( RANDOM % 20 + 1 ))
+          echo "Delaying for $delay seconds to avoid rate limiting..."
+          sleep $delay
+
+      - name: Translate using AI
+        id: translate
+        uses: actions/ai-inference@v2
+        with:
+          enable-github-mcp: true
+          prompt-file: .github/prompts/translate.txt
+          system-prompt-file: .github/prompts/system-prompt.txt
+          input: |
+            target_lang: ${{ steps.lang_map.outputs.lang_name }}
+            source_file: ${{ matrix.file }}
+          # The AI Inference action requires a token for inference (GITHUB_TOKEN is fine)
+          # and a Personal Access Token (PAT) to access the GitHub MCP server.
+          # Create a repository secret named `USER_PAT` with a PAT that has repo access,
+          # then the action will pass it to the MCP server via `github-mcp-token`.
+          token: ${{ secrets.GITHUB_TOKEN }}
+          github-mcp-token: ${{ secrets.USER_PAT }}
+          model: openai/gpt-4o
+          max-tokens: 64000
+
+      - name: Create target directory
+        run: |
+          mkdir -p "$(dirname "${{ steps.paths.outputs.target_file }}")"
+
+      - name: Write translated file
+        run: |
+          cat > "${{ steps.paths.outputs.target_file }}" << 'EOF'
+          ${{ steps.translate.outputs.response }}
+          EOF
 
       - name: Create pull request with translated files
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "Auto-translate markdown files (en -> ${{ matrix.target }})"
+          commit-message: "Auto-translate markdown: ${{ steps.paths.outputs.rel_path }} (en -> ${{ matrix.target }})"
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          branch: "auto-translate/en-to-${{ matrix.target }}"
-          title: "Auto-translate markdown files (en -> ${{ matrix.target }})"
+          branch: "auto-translate/en-to-${{ matrix.target }}-${{ github.run_number }}"
+          title: "Auto-translate: ${{ steps.paths.outputs.rel_path }} → ${{ matrix.target }}"
           body: |
-            This PR contains auto-translated markdown files from English to ${{ matrix.target }}.
+            This PR contains an auto-translated markdown file from ${{ matrix.source }} to ${{ matrix.target }}.
+
+            **File:** `${{ steps.paths.outputs.target_file }}`
+            **Original:** `${{ matrix.file }}`
+
+            Translation performed by AI Inference (OpenAI GPT-4O)
           labels: translation, automation
-          add-paths: ${{ matrix.target }}/**
+          add-paths: ${{ steps.paths.outputs.target_file }}
