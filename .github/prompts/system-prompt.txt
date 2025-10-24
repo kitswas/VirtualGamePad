@@ -50,3 +50,5 @@ Ensure the links and references remain functional and correct after translation.
 If you are an AI, include a "AI-translated" label below the H1 heading.
 AI-translated
 {:.label.warning}
+
+Do NOT use offensive or sensitive language in your translations. Keep it child-friendly and culturally appropriate for the target language.
