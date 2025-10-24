@@ -1,0 +1,83 @@
+// Define colours
+:root {
+  --info-color-light: deepskyblue;
+  --warning-color-light: coral;
+  --error-color-light: red;
+  --success-color-light: forestgreen;
+  // For dark mode
+  --info-color-dark: dodgerblue;
+  --warning-color-dark: chocolate;
+  --error-color-dark: crimson;
+  --success-color-dark: green;
+
+  // Default to light mode
+  --info-color: var(--info-color-light);
+  --warning-color: var(--warning-color-light);
+  --error-color: var(--error-color-light);
+  --success-color: var(--success-color-light);
+}
+
+body.dark-mode {
+  --info-color: var(--info-color-dark);
+  --warning-color: var(--warning-color-dark);
+  --error-color: var(--error-color-dark);
+  --success-color: var(--success-color-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  body:not(.light-mode):not(.dark-mode) {
+    --info-color: var(--info-color-dark);
+    --warning-color: var(--warning-color-dark);
+    --error-color: var(--error-color-dark);
+    --success-color: var(--success-color-dark);
+  }
+}
+
+.label {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.accent {
+  background: var(--accent-color);
+  color: #fff;
+}
+
+.info {
+  background: var(--info-color);
+  color: #fff;
+}
+
+.warning {
+  background: var(--warning-color);
+  color: #fff;
+}
+
+.error {
+  background: var(--error-color);
+  color: #fff;
+}
+
+.success {
+  background: var(--success-color);
+  color: #fff;
+}
+
+.banner {
+  display: flex;
+  padding: 0.25em 0.6em;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+}
