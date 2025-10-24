@@ -7,7 +7,8 @@ layout: default
 
 # ట్రబుల్షూటింగ్
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 మీ సమస్య ఇక్కడ కవర్ చేయబడకపోతే, [ఇష్యూ ఫైల్ చేయండి](FAQ.md#bug-reports-and-feature-requests).
 

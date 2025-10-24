@@ -7,7 +7,8 @@ layout: default
 
 # Roadmap
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 কোডের প্রতিটি লাইন একটি দায়বদ্ধতা।
 

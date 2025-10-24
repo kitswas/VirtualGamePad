@@ -6,7 +6,8 @@ layout: default
 
 # গোপনীয়তা নীতি
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 _সর্বশেষ আপডেট: জুলাই 28, 2025।_
 

@@ -7,7 +7,8 @@ layout: default
 
 # రోడ్‌మాప్
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 కోడ్ యొక్క ప్రతి లైన్ ఒక బాధ్యత.
 

@@ -6,7 +6,8 @@ layout: default
 
 # గోప్యతా విధానం
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 _చివరిగా అప్‌డేట్ చేయబడింది: జూలై 28, 2025._
 

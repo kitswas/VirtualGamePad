@@ -5,7 +5,8 @@ layout: default
 
 # VirtualGamePad
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 [![GitHub License](https://img.shields.io/github/license/kitswas/VirtualGamePad)
 ![GitHub Stars](https://img.shields.io/github/stars/kitswas/VirtualGamePad?style=social)](https://github.com/kitswas/VirtualGamePad/)

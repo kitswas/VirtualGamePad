@@ -47,4 +47,6 @@ Output the translated markdown exactly, preserving all formatting and structure.
 
 Ensure the links and references remain functional and correct after translation.
 
-If you are an AI, include a "AI-translated" label below the H1 heading. (AI-translated {: .ai-banner})
+If you are an AI, include a "AI-translated" label below the H1 heading.
+AI-translated
+{:.label.warning}

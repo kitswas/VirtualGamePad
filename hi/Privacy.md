@@ -6,7 +6,8 @@ layout: default
 
 # Privacy Policy
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 _आखिरी बार अपडेट किया गया: July 28, 2025।_
 

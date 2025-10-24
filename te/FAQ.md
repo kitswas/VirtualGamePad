@@ -7,7 +7,8 @@ layout: default
 
 # FAQ
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 - ఈ జాబితా విషయ సూచిక ద్వారా భర్తీ చేయబడుతుంది
 {:toc}

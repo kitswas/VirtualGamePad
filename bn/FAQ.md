@@ -7,7 +7,8 @@ layout: default
 
 # FAQ
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 - this list will be replaced by the table of contents
 {:toc}

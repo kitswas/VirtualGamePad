@@ -7,7 +7,8 @@ layout: default
 
 # Troubleshooting
 
-AI-translated {: .ai-banner}
+AI-translated
+{:.label.warning}
 
 যদি আপনার সমস্যা এখানে কভার করা না হয়, [একটি ইশু ফাইল করুন](FAQ.md#bug-reports-and-feature-requests)।
 
