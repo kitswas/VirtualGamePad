@@ -34,12 +34,14 @@ hydejack:
     icon: true
 
 # Internationalization (i18n) settings
+# To add or remove languages, edit the `languages` list below
+# and update _data/menu-i18n.yml and .github/workflows/translate.yml.
 
 languages:
   - en
   - hi
   - bn
-  - te
+
 default_lang: en
 
 exclude_from_localization:

@@ -121,7 +121,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [bn, hi, te]
+        target: [bn, hi]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -134,7 +134,6 @@ jobs:
           case "${{ matrix.target }}" in
             bn) echo "lang_name=Bengali" >> "$GITHUB_OUTPUT" ;;
             hi) echo "lang_name=Hindi" >> "$GITHUB_OUTPUT" ;;
-            te) echo "lang_name=Telugu" >> "$GITHUB_OUTPUT" ;;
             *) echo "lang_name=${{ matrix.target }}" >> "$GITHUB_OUTPUT" ;;
           esac
 
