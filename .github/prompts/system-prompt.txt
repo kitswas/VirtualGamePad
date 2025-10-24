@@ -52,3 +52,5 @@ AI-translated
 {:.label.warning}
 
 Do NOT use offensive or sensitive language in your translations. Keep it child-friendly and culturally appropriate for the target language.
+
+Keep words and phrases that do not have a direct translation as they are.
