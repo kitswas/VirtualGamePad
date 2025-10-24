@@ -67,7 +67,7 @@ The experimental Gamepad Input mode has extra requirements, see the in-app descr
 ### Linux
 
 Grab the latest archive(Virtual-GamePad-Ubuntu.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it, `chmod +x bin/VGamepadPC` and `bin/VGamepadPC`.  
-If Qt complains about 'xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin', `sudo apt install libxcb-cursor0` should fix it.  
+If Qt complains about `xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin`, `sudo apt install libxcb-cursor0` should fix it.  
 See the in-app description on the Preferences page.  
 [<img src="{{ '/assets/badge_Github_download.svg' | relative_url }}" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)

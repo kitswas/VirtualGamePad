@@ -15,8 +15,8 @@ on:
 
 permissions:
   contents: write
+  issues: write
   pull-requests: write
-  models: read
 
 jobs:
   discover:
@@ -24,12 +24,65 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       files: ${{ steps.find.outputs.files }}
+      is_source_change: ${{ steps.detect_trigger.outputs.is_source_change }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Find English markdown files under en/
-        id: find
+      - name: Detect trigger source
+        id: detect_trigger
+        run: |
+          # For push events, check if any changed files are in en/
+          if [ "${{ github.event_name }}" = "push" ]; then
+            # Get changed files - only check en/** for source changes
+            changed_files="${{ github.event.before }}..${{ github.event.after }}"
+            files_in_en=$(git diff $changed_files --name-only | grep "^en/" || true)
+            
+            if [ -n "$files_in_en" ]; then
+              echo "is_source_change=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "is_source_change=false" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            # For pull_request and workflow_dispatch, assume it's a source change
+            echo "is_source_change=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Find changed English markdown files (source change)
+        id: find_changed
+        if: steps.detect_trigger.outputs.is_source_change == 'true'
+        shell: bash
+        run: |
+          shopt -s nullglob
+          
+          # Get list of changed files in en/
+          if [ "${{ github.event_name }}" = "push" ]; then
+            changed_files=$(git diff ${{ github.event.before }}..${{ github.event.after }} --name-only | grep "^en/.*\.md$" || true)
+          else
+            # For pull_request and workflow_dispatch, get all files
+            changed_files=$(find "en" -type f -name "*.md" | sort)
+          fi
+          
+          if [ -z "$changed_files" ]; then
+            echo "files=[]" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          
+          # Build JSON array
+          json="["
+          sep=""
+          while IFS= read -r f; do
+            json+="$sep\"$f\""
+            sep=","
+          done <<< "$changed_files"
+          json+="]"
+          echo "files=$json" >> "$GITHUB_OUTPUT"
+
+      - name: Find all Source markdown files (non-source change)
+        id: find_all
+        if: steps.detect_trigger.outputs.is_source_change == 'false'
         shell: bash
         run: |
           shopt -s nullglob
@@ -39,7 +92,7 @@ jobs:
             echo "files=[]" >> "$GITHUB_OUTPUT"
             exit 0
           fi
-          # Build JSON array, e.g. ["en/README.md","en/FAQ.md",...]
+          # Build JSON array
           json="["
           sep=""
           for f in "${files[@]}"; do
@@ -51,29 +104,29 @@ jobs:
           json+="]"
           echo "files=$json" >> "$GITHUB_OUTPUT"
 
-  translate-and-pr:
-    name: Translate files and create PRs
+      - name: Determine final file list
+        id: find
+        run: |
+          if [ "${{ steps.detect_trigger.outputs.is_source_change }}" = "true" ]; then
+            files='${{ steps.find_changed.outputs.files }}'
+          else
+            files='${{ steps.find_all.outputs.files }}'
+          fi
+          echo "files=$files" >> "$GITHUB_OUTPUT"
+
+  create-translation-issues:
+    name: Create translation issues per language
     needs: discover
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        source: [en]
         target: [bn, hi, te]
-        file: ${{ fromJson(needs.discover.outputs.files) }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Compute target file path
-        id: paths
-        run: |
-          source_file="${{ matrix.file }}"
-          # Extract relative path from en/
-          rel_path="${source_file#en/}"
-          target_file="${{ matrix.target }}/${rel_path}"
-          echo "rel_path=${rel_path}" >> "$GITHUB_OUTPUT"
-          echo "target_file=${target_file}" >> "$GITHUB_OUTPUT"
+        with:
+          fetch-depth: 1
 
       - name: Map language code to full name
         id: lang_map
@@ -85,55 +138,72 @@ jobs:
             *) echo "lang_name=${{ matrix.target }}" >> "$GITHUB_OUTPUT" ;;
           esac
 
-      # Add random delay to reduce rate limiting issues
-      - name: Random delay
+      - name: Build file mappings and issue body
+        id: build_body
         run: |
-          delay=$(( RANDOM % 20 + 1 ))
-          echo "Delaying for $delay seconds to avoid rate limiting..."
-          sleep $delay
+          files='${{ needs.discover.outputs.files }}'
+          target="${{ matrix.target }}"
+          is_source_change='${{ needs.discover.outputs.is_source_change }}'
+          
+          # Start building the issue body
+          body="Using the system prompt from .github/prompts/system-prompt.txt as your translation guidelines:"
+          body+=$'\n\n'
+          
+          if [ "$is_source_change" = "true" ]; then
+            body+="Translate the following **changed** files into ${{ steps.lang_map.outputs.lang_name }}:"
+          else
+            body+="Retranslate all files in en/** into ${{ steps.lang_map.outputs.lang_name }}."
+          fi
+          
+          body+=$'\n\n'
+          
+          # Parse the JSON array and build the file list
+          while IFS= read -r source_file; do
+            # Extract relative path from en/
+            rel_path="${source_file#en/}"
+            target_file="${target}/${rel_path}"
+            
+            body+="- Source: \`${source_file}\`"
+            body+=$'\n'
+            body+="  Target: \`${target_file}\`"
+            body+=$'\n'
+          done < <(echo "$files" | jq -r '.[]')
+          
+          # Escape newlines for GitHub output
+          body_escaped=$(printf '%s' "$body" | jq -Rs .)
+          echo "body=$body_escaped" >> "$GITHUB_OUTPUT"
 
-      - name: Translate using AI
-        id: translate
-        uses: actions/ai-inference@v2
-        with:
-          enable-github-mcp: true
-          prompt-file: .github/prompts/translate.txt
-          system-prompt-file: .github/prompts/system-prompt.txt
-          input: |
-            target_lang: ${{ steps.lang_map.outputs.lang_name }}
-            source_file: ${{ matrix.file }}
-          # The AI Inference action requires a token for inference (GITHUB_TOKEN is fine)
-          # and a Personal Access Token (PAT) to access the GitHub MCP server.
-          # Create a repository secret named `USER_PAT` with a PAT that has repo access,
-          # then the action will pass it to the MCP server via `github-mcp-token`.
-          token: ${{ secrets.GITHUB_TOKEN }}
-          github-mcp-token: ${{ secrets.USER_PAT }}
-          model: openai/gpt-4o
-          max-tokens: 64000
-
-      - name: Create target directory
+      - name: Create translation issue
+        id: create_issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          mkdir -p "$(dirname "${{ steps.paths.outputs.target_file }}")"
+          if [ '${{ needs.discover.outputs.is_source_change }}' = "true" ]; then
+            issue_title="Translate changed files to ${{ steps.lang_map.outputs.lang_name }}"
+          else
+            issue_title="Retranslate all files to ${{ steps.lang_map.outputs.lang_name }}"
+          fi
+          
+          issue_body=$(echo '${{ steps.build_body.outputs.body }}' | jq -r .)
+          
+          # Create the issue without assignee
+          issue_url=$(gh issue create \
+            --title "$issue_title" \
+            --body "$issue_body" \
+            --label "translation")
+          
+          # Extract issue number from URL (e.g., https://github.com/owner/repo/issues/123)
+          issue_number=$(echo "$issue_url" | grep -oE '[0-9]+$')
+          
+          echo "Created translation issue: $issue_title (Issue #$issue_number)"
+          echo "issue_url=$issue_url" >> "$GITHUB_OUTPUT"
+          echo "issue_number=$issue_number" >> "$GITHUB_OUTPUT"
 
-      - name: Write translated file
+      - name: Assign Copilot to issue
+        env:
+          GH_TOKEN: ${{ secrets.Copilot_Billing_Target }}
         run: |
-          cat > "${{ steps.paths.outputs.target_file }}" << 'EOF'
-          ${{ steps.translate.outputs.response }}
-          EOF
-
-      - name: Create pull request with translated files
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "Auto-translate markdown: ${{ steps.paths.outputs.rel_path }} (en -> ${{ matrix.target }})"
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          branch: "auto-translate/en-to-${{ matrix.target }}-${{ github.run_number }}"
-          title: "Auto-translate: ${{ steps.paths.outputs.rel_path }} → ${{ matrix.target }}"
-          body: |
-            This PR contains an auto-translated markdown file from ${{ matrix.source }} to ${{ matrix.target }}.
-
-            **File:** `${{ steps.paths.outputs.target_file }}`
-            **Original:** `${{ matrix.file }}`
-
-            Translation performed by AI Inference (OpenAI GPT-4O)
-          labels: translation, automation
-          add-paths: ${{ steps.paths.outputs.target_file }}
+          gh issue edit ${{ steps.create_issue.outputs.issue_number }} \
+            --add-assignee "@copilot"
+          
+          echo "Assigned @copilot to issue #${{ steps.create_issue.outputs.issue_number }}"

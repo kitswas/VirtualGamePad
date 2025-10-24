@@ -33,3 +33,30 @@ header .btn:hover {
   color: rgba(white, 1);
   box-shadow: 0px 0px 8px whitesmoke;
 }
+
+.ai-banner {
+  display: flex;
+  padding: 0.25em 0.6em;
+  font-size: 0.85em;
+  font-weight: 700;
+  line-height: 1;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  background-color: coral;
+  color: white;
+}
+
+.label {
+  display: inline-block;
+  padding: 0.2em 0.5em;
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 0.25rem;
+  font-size: 0.85em;
+  line-height: 1;
+}

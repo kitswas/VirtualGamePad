@@ -1,5 +1,0 @@
-Read the markdown file at path: {{source_file}}
-
-Translate this file from English to {{target_lang}}.
-
-Provide ONLY the translated markdown output without any additional explanation or commentary.

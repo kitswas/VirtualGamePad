@@ -17,12 +17,13 @@ CRITICAL RULES:
 4. Preserve frontmatter YAML:
    - Keep the frontmatter header (--- ... ---) with all metadata unchanged
    - Change the language code in the `lang` field to the target language code
-   - Only translate values that are user-facing content (like title, description)
+   - Only translate the `title` and `description` fields in the frontmatter
 
 5. Preserve special links and URLs:
    - Keep all URLs unchanged
    - Keep image references unchanged: ![alt](url)
    - Keep link references unchanged: [text](url)
+   - Internal anchors and references should be changed only if the linked text/heading is translated
 
 6. Preserve media and reference syntax:
    - Keep markdown image syntax
@@ -43,3 +44,7 @@ CRITICAL RULES:
    - Blockquote text
 
 Output the translated markdown exactly, preserving all formatting and structure. Do not modify, escape, or alter any preserved elements.
+
+Ensure the links and references remain functional and correct after translation.
+
+If you are an AI, include a "AI-translated" label below the H1 heading. (AI-translated {: .ai-banner})
