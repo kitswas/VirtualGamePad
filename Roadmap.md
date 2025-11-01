@@ -40,6 +40,8 @@ They may or may not lead to a feature in the future.
 
 - True Gamepad input with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.  
   _Implemented but sometimes crashes on server start._
+- Ability to edit gamepad layout on the mobile app.
+  [See tracking issue](https://github.com/kitswas/VirtualGamePad-Mobile/issues/7).
 
 ## Planned
 
