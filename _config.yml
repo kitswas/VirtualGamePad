@@ -5,6 +5,7 @@ plugins:
   - jekyll-remote-theme
   - jekyll-sitemap
   - jekyll-include-cache
+  - jekyll-spaceship
 
 remote_theme: hydecorp/hydejack@v9.2.1
 
@@ -31,6 +32,7 @@ defaults:
       path: ""
     values:
       image: /assets/open-graph-image.png # Default social image
+      video: /assets/VirtualGamePad.mp4
       accent_image: /assets/GamepadIcon.png
       accent_color: "#157878"
 
