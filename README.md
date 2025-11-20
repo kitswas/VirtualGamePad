@@ -9,7 +9,7 @@ It's similar to DroidJoy, but ***free*** and ***open-source***.
 > **No ads, no tracking, no paywalls.**
 {:.lead}
 
-<video controls preload="metadata" height="720">
+<video controls preload="metadata" width="1280" height="720">
   <source src="assets/VirtualGamePad.mp4" type="video/mp4">
   Sorry, your browser does not support embedded videos. Click here to view: [VirtualGamePad Intro video](assets/VirtualGamePad.mp4)
 </video>
@@ -86,7 +86,7 @@ Having problems? See the [Troubleshooting document](Troubleshooting.md).
 
 ## How it works
 
-<video controls preload="metadata" height="720">
+<video controls preload="metadata" width="1280" height="720">
   <source src="assets/VirtualGamePad_HowItWorks.mp4" type="video/mp4">
   Sorry, your browser does not support embedded videos. Click here to view: [VirtualGamePad Under the Hood](assets/VirtualGamePad_HowItWorks.mp4)
 </video>
