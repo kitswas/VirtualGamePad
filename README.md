@@ -9,7 +9,7 @@ It's similar to DroidJoy, but ***free*** and ***open-source***.
 > **No ads, no tracking, no paywalls.**
 {:.lead}
 
-[![VirtualGamePad Intro video](assets/VirtualGamePad_thumbnail.png)](assets/VirtualGamePad.mp4)
+![VirtualGamePad Intro video]({{ "/assets/VirtualGamePad.mp4" | relative_url }}){: width="1280" height="720" controls preload="metadata" }
 
 - this list will be replaced by the table of contents
 {:toc}
@@ -83,7 +83,7 @@ Having problems? See the [Troubleshooting document](Troubleshooting.md).
 
 ## How it works
 
-[![VirtualGamePad Under the Hood](assets/VirtualGamePad_HowItWorks_thumbnail.png)](assets/VirtualGamePad_HowItWorks.mp4)
+![VirtualGamePad Under the Hood]({{ "/assets/VirtualGamePad_HowItWorks.mp4" | relative_url }}){: width="1280" height="720" controls preload="metadata" }
 
 ## Source Code
 
