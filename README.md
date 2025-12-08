@@ -99,7 +99,7 @@ VirtualGamePad uses open-source libraries and assets which are governed by their
 
 The source code for the Android app is available at [kitswas/VirtualGamePad-Mobile](https://github.com/kitswas/VirtualGamePad-Mobile).
 
-The source code for the Windows app is available at [kitswas/VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC).  
+The source code for the PC (Linux and Windows) app is available at [kitswas/VirtualGamePad-PC](https://github.com/kitswas/VirtualGamePad-PC).  
 Visit the [companion website](https://kitswas.github.io/VirtualGamePad-PC/) to see the documentation.
 
 [kitswas/VGP_Data_Exchange](https://github.com/kitswas/VGP_Data_Exchange/) is used to handle the communication between the client and the server.
