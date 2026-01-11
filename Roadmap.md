@@ -24,7 +24,7 @@ I mostly work on this during my college breaks. (1-4 releases yearly)
 Won't be implemented in the foreseeable future.
 
 - Bluetooth as a connection mode.
-- Support for multiple clients with a single server. See [this issue](https://github.com/kitswas/VirtualGamePad-PC/issues/8).
+- Support for multiple clients with a single server. You can run multiple instances of the server in parallel. See [this issue](https://github.com/kitswas/VirtualGamePad-PC/issues/8).
 
 ## Completed
 
@@ -38,7 +38,7 @@ Won't be implemented in the foreseeable future.
 These are experiments to determine feasibility and potential implementation paths.  
 They may or may not lead to a feature in the future.
 
-- True Gamepad input with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.  
+- True Gamepad input on Windows with `winrt::Windows::UI::Input::Preview::Injection::InputInjector`.  
   _Implemented but sometimes crashes on server start._
 - Ability to edit gamepad layout on the mobile app.
   [See tracking issue](https://github.com/kitswas/VirtualGamePad-Mobile/issues/7).

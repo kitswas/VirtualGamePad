@@ -11,7 +11,8 @@ It's similar to DroidJoy, but ***free*** and ***open-source***.
 
 <video controls preload="metadata" height="720">
   <source src="assets/VirtualGamePad.mp4" type="video/mp4">
-  Sorry, your browser does not support embedded videos. Click here to view: [VirtualGamePad Intro video](assets/VirtualGamePad.mp4)
+  Sorry, your browser does not support embedded videos. Click here to view:
+  <a href="assets/VirtualGamePad.mp4" target="_blank">VirtualGamePad Intro Video</a>
 </video>
 
 - this list will be replaced by the table of contents
