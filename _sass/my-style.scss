@@ -81,3 +81,33 @@ body.dark-mode {
   vertical-align: baseline;
   border-radius: 0.25rem;
 }
+
+/* TOC sidebar enhancements */
+#markdown-toc {
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.toc-sentinel {
+  width: 1px;
+  height: 1px;
+  display: block;
+}
+
+/* Only affix TOC on screens wide enough (86em = --break-point-5) */
+@media (min-width: 86em) {
+  #markdown-toc.affix {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    width: 18rem;
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    background: inherit;
+    z-index: 40;
+  }
+}
+
+#markdown-toc a {
+  transition: color 0.12s ease, font-weight 0.12s ease;
+}
