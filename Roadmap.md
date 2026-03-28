@@ -50,7 +50,8 @@ I want to try doing these when I have time.
 - Symmetric Key Encryption on the sockets.  
   A random key can be generated on the server for each session. We already have a secure way to share the key. _(The user can scan the QR code or type the key.)_  
   The real questions are  
-  1. Is it necessary?
+  1. Is it necessary?  
+    I asked a security professional who told me Encryption is unnecessary for the use case. _(Sep 2025)_
   2. What will it cost in terms of performance?
 
 ## Bonus XKCD Comic
