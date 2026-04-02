@@ -49,6 +49,13 @@ With a bit of remapping, almost everything is playable.
 
 You can find a few [sample profiles here](https://gist.github.com/kitswas/b7a100954de7dd7dcbe52cd38a27c8cf).
 
+## Analog Stick press (L3 and R3 buttons)?
+
+The L3 and R3 buttons toggle on a thumbstick long press (press and hold).  
+A long press is required instead of a tap because otherwise it would be easy to misfire accidentally.
+
+![Screenshot showing R3 button being pressed](assets/VGP_Analog_Stick_press.png)
+
 ## Feels laggy/unresponsive
 
 The server is not receiving your inputs fast enough.  
