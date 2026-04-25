@@ -73,3 +73,8 @@ identifier = "privacy"
 name = "Privacy Policy"
 url = "/Privacy/"
 weight = 8
+
+# For GH Pages, see https://gohugo.io/host-and-deploy/host-on-github-pages/#step-2
+[caches]
+[caches.images]
+dir = ':cacheDir/images'
