@@ -1,9 +1,8 @@
 ---
 title: Privacy Policy
 description: The VirtualGamePad Privacy Policy
+toc: true
 ---
-
-# Privacy Policy
 
 _Last updated: July 28, 2025._
 

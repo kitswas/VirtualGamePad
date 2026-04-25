@@ -45,8 +45,6 @@ You can:
 
 With a bit of remapping, almost everything is playable.  
 
-You can find a few [sample profiles here](https://gist.github.com/kitswas/b7a100954de7dd7dcbe52cd38a27c8cf).
-
 ## Analog Stick press (L3 and R3 buttons)?
 
 The L3 and R3 buttons toggle on a thumbstick long press (press and hold).  

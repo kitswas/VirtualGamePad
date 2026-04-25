@@ -333,7 +333,7 @@ pre code {
 
 blockquote {
   margin: 1.5rem 0;
-  padding: 0.5rem 1rem;
+  padding: 0 1rem;
   color: var(--text-muted);
   border-left: 0.25rem solid var(--border-color);
   background-color: rgba(255, 255, 255, 0.05);
@@ -522,4 +522,10 @@ blockquote {
   align-items: center;
   justify-content: center;
   box-shadow: var(--shadow-sm);
+}
+
+.katex-display {
+  overflow: auto;
+  padding: 0.5rem 0 !important;
+  margin: 0 !important;
 }
