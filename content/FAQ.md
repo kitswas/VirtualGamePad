@@ -59,7 +59,7 @@ A long press is required instead of a tap because otherwise it would be easy to 
 The server is not receiving your inputs fast enough.  
 This is a symptom common to two different issues with different solutions.
 
-$$\text{Max response time} = \text{Network delay} + \text{Polling interval}$$  
+$$\text{Max response time} = \text{Network delay} + \text{Polling interval}$$
 $$ \text{Min response time} = \text{Network delay}$$
 
 _Processing time is negligible. I measured that in both apps (using v0.3.0) to find out._

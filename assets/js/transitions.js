@@ -30,6 +30,53 @@ function initTocTracking() {
     headings.forEach(h => tocObserver.observe(h));
 }
 
+function renderMath() {
+    if (window.renderMathInElement) {
+        window.renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$$', right: '$$', display: true},
+                {left: '$', right: '$', display: false},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError : false
+        });
+    }
+}
+
+async function ensureKaTeX(newDoc) {
+    if (window.renderMathInElement) return;
+
+    const katexLink = newDoc.querySelector('link[href*="katex"]');
+    if (!katexLink) return;
+
+    console.log('Lazy loading KaTeX...');
+
+    // Load CSS
+    if (!document.querySelector('link[href*="katex"]')) {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = katexLink.href;
+        link.integrity = katexLink.integrity;
+        link.crossOrigin = katexLink.crossOrigin;
+        document.head.appendChild(link);
+    }
+
+    // Load Scripts sequentially
+    const scripts = Array.from(newDoc.querySelectorAll('script[src*="katex"]'));
+    for (const s of scripts) {
+        await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = s.src;
+            script.integrity = s.integrity;
+            script.crossOrigin = s.crossOrigin;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+        });
+    }
+}
+
 // Initialize on first load
 document.addEventListener('DOMContentLoaded', () => {
     initTocTracking();
@@ -49,7 +96,7 @@ function transitionTo(url) {
             if (!response.ok) throw new Error('Network response was not ok');
             return response.text();
         })
-        .then(html => {
+        .then(async html => {
             const parser = new DOMParser();
             const newDoc = parser.parseFromString(html, 'text/html');
 
@@ -63,6 +110,9 @@ function transitionTo(url) {
                 window.location.href = url;
                 return;
             }
+
+            // Prepare KaTeX if needed before starting the transition
+            await ensureKaTeX(newDoc);
 
             document.startViewTransition(() => {
                 // Update Title
@@ -117,9 +167,7 @@ function transitionTo(url) {
                 window.scrollTo(0, 0);
 
                 // Re-render LaTeX
-                if (window.renderMathInElement) {
-                    window.renderMathInElement(document.body);
-                }
+                renderMath();
 
                 // Re-initialize TOC tracking
                 initTocTracking();
