@@ -32,7 +32,7 @@ Here the the steps:
 
 The following image shows the app connected via USB.
 
-![USB Tethering](assets/VGP_USB_Tethering.png)
+![USB Tethering](/assets/VGP_USB_Tethering.png)
 
 ## The default mapping doesn't work for me. What do I do?
 
@@ -41,7 +41,7 @@ You can:
 1. Change the controls in-game, if the game supports it.
 2. Use the profile editor in the server to remap the controls.
 
-![Profile Editor](assets/VGP_Profile_Editor.png)
+![Profile Editor](/assets/VGP_Profile_Editor.png)
 
 With a bit of remapping, almost everything is playable.  
 
@@ -52,7 +52,7 @@ You can find a few [sample profiles here](https://gist.github.com/kitswas/b7a100
 The L3 and R3 buttons toggle on a thumbstick long press (press and hold).  
 A long press is required instead of a tap because otherwise it would be easy to misfire accidentally.
 
-![Screenshot showing R3 button being pressed](assets/VGP_Analog_Stick_press.png)
+![Screenshot showing R3 button being pressed](/assets/VGP_Analog_Stick_press.png)
 
 ## Feels laggy/unresponsive
 

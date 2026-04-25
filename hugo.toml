@@ -3,11 +3,11 @@ title = "VirtualGamePad"
 theme = "vgp-theme"
 
 [params]
-logo = "assets/SquareIcon.png"
+logo = "/assets/SquareIcon.png"
 description = "Virtual Gamepad for Android and PC"
-accent_image = "assets/GamepadIcon.png"
+accent_image = "/assets/GamepadIcon.png"
 accent_color = "#157878"
-open_graph_image = "assets/open-graph-image.png"
+open_graph_image = "/assets/open-graph-image.png"
 
 [markup]
 [markup.goldmark]
