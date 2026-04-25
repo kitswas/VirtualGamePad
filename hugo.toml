@@ -1,0 +1,80 @@
+languageCode = "en-in"
+title = "VirtualGamePad"
+theme = "vgp-theme"
+
+[params]
+logo = "/assets/SquareIcon.png"
+description = "Virtual Gamepad for Android and PC"
+accent_image = "/assets/GamepadIcon.png"
+accent_color = "#157878"
+open_graph_image = "/assets/open-graph-image.png"
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.extensions]
+definitionList = true
+footnote = true
+linkify = true
+strikethrough = true
+table = true
+taskList = true
+typographer = true
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [["$$", "$$"], ["\\[", "\\]"]]
+inline = [["$", "$"], ["\\(", "\\)"]]
+[markup.goldmark.renderer]
+unsafe = true
+
+[languages]
+[languages.en]
+languageName = "English"
+weight = 1
+
+[menu]
+[[menu.main]]
+identifier = "download_android"
+name = "Download Android App"
+url = "https://github.com/kitswas/VirtualGamePad-Mobile/releases"
+weight = 1
+[[menu.main]]
+identifier = "download_pc"
+name = "Download PC Server"
+url = "https://github.com/kitswas/VirtualGamePad-PC/releases"
+weight = 2
+[[menu.main]]
+identifier = "view_github"
+name = "View on GitHub"
+url = "https://github.com/kitswas/VirtualGamePad/"
+weight = 3
+[[menu.main]]
+identifier = "faq"
+name = "FAQ"
+url = "/FAQ/"
+weight = 4
+[[menu.main]]
+identifier = "troubleshooting"
+name = "Troubleshooting"
+url = "/Troubleshooting/"
+weight = 5
+[[menu.main]]
+identifier = "contributing"
+name = "Contribute"
+url = "/Contributing/"
+weight = 6
+[[menu.main]]
+identifier = "roadmap"
+name = "Roadmap"
+url = "/Roadmap/"
+weight = 7
+[[menu.main]]
+identifier = "privacy"
+name = "Privacy Policy"
+url = "/Privacy/"
+weight = 8
+
+# For GH Pages, see https://gohugo.io/host-and-deploy/host-on-github-pages/#step-2
+[caches]
+[caches.images]
+dir = ':cacheDir/images'

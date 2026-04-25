@@ -1,14 +1,11 @@
 ---
+title: Contributing
 description: |
   Contribution guide for VirtualGamePad
+toc: true
 ---
 
-# Contributing to VirtualGamePad
-
 Welcome to the VirtualGamePad project! We're building a virtual gamepad that lets you use your Android phone as a game controller for PCs, and **we need YOUR help** - whether you're a gamer or someone who just wants a better way to play games.
-
-- this list will be replaced by the table of contents
-{:toc}
 
 ## 🎮 Who We Need
 
@@ -26,7 +23,7 @@ Welcome to the VirtualGamePad project! We're building a virtual gamepad that let
 - New stuff gets added regularly
 - Your feedback directly shapes what we build next
 
-Go see [the roadmap](Roadmap.md).
+Go see [the roadmap](/Roadmap/).
 
 ## ⚠️ What to Expect
 

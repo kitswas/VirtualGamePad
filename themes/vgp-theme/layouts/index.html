@@ -1,0 +1,16 @@
+{{ define "main" }}
+<article class="page">
+    <header>
+        <h1>{{ .Title }}</h1>
+        {{ if .Params.toc }}
+        <div class="toc toc-inline">
+            <h2>{{ i18n "toc_title" }}</h2>
+            {{ .TableOfContents }}
+        </div>
+        {{ end }}
+    </header>
+    <div class="page-content">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}
