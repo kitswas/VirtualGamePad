@@ -1,5 +1,6 @@
 :root {
   --accent-color: #157878;
+  --accent-color-faded: rgba(21, 120, 120, 0.4);
   --accent-color-hover: #116262;
   --bg-color: #ffffff;
   --sidebar-bg: #157878;
@@ -28,6 +29,7 @@
     --border-color: #30363d;
     --code-bg: #161b22;
     --accent-color: #2f81f7;
+    --accent-color-faded: rgba(47, 129, 247, 0.4);
     --accent-color-hover: #58a6ff;
   }
 }
@@ -272,12 +274,16 @@ body {
 }
 
 .content a {
-  color: var(--accent-color);
-  text-decoration: none;
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--accent-color-faded);
+  text-decoration-thickness: 0.2rem;
+  text-underline-offset: 0.2rem;
+  transition: text-decoration-color 0.2s ease;
 }
 
 .content a:hover {
-  text-decoration: underline;
+  text-decoration-color: var(--accent-color);
 }
 
 .content img {
