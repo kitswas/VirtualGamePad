@@ -55,7 +55,7 @@ function transitionTo(url) {
 
             const newContent = newDoc.querySelector('.content')?.innerHTML;
             const newTitle = newDoc.title;
-            const newToc = newDoc.querySelector('.toc');
+            const newToc = newDoc.querySelector('.toc-sidebar');
             const newSidebarMenu = newDoc.querySelector('.menu')?.innerHTML;
 
             if (!newContent || !newSidebarMenu) {
@@ -96,7 +96,7 @@ function transitionTo(url) {
                 document.querySelector('.menu').innerHTML = newSidebarMenu;
 
                 // Update TOC
-                const currentToc = document.querySelector('.toc');
+                const currentToc = document.querySelector('.toc-sidebar');
                 const container = document.querySelector('.container');
 
                 if (newToc) {
@@ -104,7 +104,8 @@ function transitionTo(url) {
                         currentToc.innerHTML = newToc.innerHTML;
                     } else {
                         const tocAside = document.createElement('aside');
-                        tocAside.className = 'toc';
+                        tocAside.className = 'toc toc-sidebar';
+                        tocAside.id = 'toc-container';
                         tocAside.innerHTML = newToc.innerHTML;
                         container.appendChild(tocAside);
                     }

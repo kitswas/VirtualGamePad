@@ -395,12 +395,12 @@ blockquote {
 }
 
 /* Table of Contents (TOC) */
-.toc {
+.toc-sidebar {
   display: none;
 }
 
 @media (min-width: 1200px) {
-  .toc {
+  .toc-sidebar {
     display: block;
     width: var(--toc-width);
     padding: 3rem 2rem;
@@ -411,6 +411,20 @@ blockquote {
     border-left: 1px solid var(--border-color);
     background: var(--bg-color);
     font-size: 0.85rem;
+  }
+}
+
+.toc-inline {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: var(--code-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+@media (min-width: 1200px) {
+  .toc-inline {
+    display: none;
   }
 }
 

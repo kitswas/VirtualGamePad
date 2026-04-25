@@ -42,7 +42,7 @@
             {{ block "main" . }}{{ end }}
         </main>
 
-        <aside class="toc" id="toc-container">
+        <aside class="toc toc-sidebar" id="toc-container">
             {{ if .Params.toc }}
             <h2>{{ i18n "toc_title" }}</h2>
             {{ .TableOfContents }}
