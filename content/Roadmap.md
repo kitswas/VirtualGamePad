@@ -1,9 +1,9 @@
 ---
+title: Roadmap
 description: |
   A roadmap for the Virtual GamePad system, detailing planned features, ongoing experiments, and future considerations.
+toc: true
 ---
-
-# Roadmap
 
 Every line of code is a liability.
 
@@ -15,9 +15,6 @@ Before making changes, I ask myself:
 4. Does it negatively affect security or performance?
 
 I mostly work on this during my college breaks. (1-4 releases yearly)
-
-- this list will be replaced by the table of contents
-{:toc}
 
 ## Not Planned
 

@@ -1,0 +1,29 @@
+[download_android]
+other = "Download Android App"
+
+[download_pc]
+other = "Download PC Server"
+
+[view_github]
+other = "View on GitHub"
+
+[faq]
+other = "FAQ"
+
+[troubleshooting]
+other = "Troubleshooting"
+
+[contributing]
+other = "Contribute"
+
+[roadmap]
+other = "Roadmap"
+
+[privacy]
+other = "Privacy Policy"
+
+[menu_title]
+other = "Menu"
+
+[toc_title]
+other = "Table of Contents"

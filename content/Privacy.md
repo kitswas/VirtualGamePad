@@ -1,4 +1,5 @@
 ---
+title: Privacy Policy
 description: The VirtualGamePad Privacy Policy
 ---
 

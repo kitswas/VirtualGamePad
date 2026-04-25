@@ -1,14 +1,11 @@
 ---
+title: Troubleshooting
 description: |
   The troubleshooting guide for Virtual GamePad.
+toc: true
 ---
 
-# Troubleshooting
-
-If your problem is not covered here, [file an issue](FAQ.md#bug-reports-and-feature-requests).
-
-- this list will be replaced by the table of contents
-{:toc}
+If your problem is not covered here, [file an issue](/FAQ/#bug-reports-and-feature-requests).
 
 ## Help! I cannot connect to the server
 
@@ -50,7 +47,7 @@ Read [How it works](https://kitswas.github.io/VirtualGamePad-PC/#how-it-works) t
 
 ## Help! The gamepad feels laggy/unresponsive
 
-This is covered in [the FAQ.](FAQ.md#feels-laggyunresponsive)
+This is covered in [the FAQ.](/FAQ/#feels-laggyunresponsive)
 
 ## Bonus XKCD Comic
 

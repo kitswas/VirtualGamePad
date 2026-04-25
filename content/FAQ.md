@@ -1,12 +1,10 @@
 ---
+title: FAQ
 description: |
   Frequently asked questions about the Virtual GamePad system, including game compatibility, control mapping, performance, etc.
+toc: true
+math: true
 ---
-
-# FAQ
-
-- this list will be replaced by the table of contents
-{:toc}
 
 ## Which games do you play with this?
 

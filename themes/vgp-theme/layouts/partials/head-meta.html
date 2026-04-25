@@ -1,0 +1,26 @@
+<meta name="description" content="{{ with .Description }}{{ . | plainify | chomp }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | chomp }}{{ else }}{{ .Site.Params.description | plainify | chomp }}{{ end }}{{ end }}" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Title }}" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="application-name" content="{{ .Site.Title }}" />
+<meta name="generator" content="Hugo {{ hugo.Version }}" />
+<link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . | plainify | chomp }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | chomp }}{{ else }}{{ .Site.Params.description | plainify | chomp }}{{ end }}{{ end }}" />
+{{ with .Site.Params.open_graph_image }}
+<meta property="og:image" content="{{ . | absURL }}" />
+{{ end }}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}" />
+<meta name="twitter:description" content="{{ with .Description }}{{ . | plainify | chomp }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify | chomp }}{{ else }}{{ .Site.Params.description | plainify | chomp }}{{ end }}{{ end }}" />
+{{ with .Site.Params.open_graph_image }}
+<meta name="twitter:image" content="{{ . | absURL }}" />
+{{ end }}

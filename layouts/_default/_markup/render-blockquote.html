@@ -1,0 +1,15 @@
+{{- if eq .Type "alert" -}}
+<div class="markdown-alert markdown-alert-{{ .AlertType }}">
+  <div class="markdown-alert-title">
+    {{- .AlertType | title -}}
+  </div>
+  <div class="markdown-alert-content">
+    {{- /* Strip wrapping <p> if it's a single paragraph alert */ -}}
+    {{- .Text | replaceRE `(?s)^\s*<p>(.*)</p>\s*$` "$1" | safeHTML -}}
+  </div>
+</div>
+{{- else -}}
+<blockquote class="standard-quote">
+  {{ .Text }}
+</blockquote>
+{{- end -}}

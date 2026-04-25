@@ -1,0 +1,15 @@
+# VirtualGamePad
+
+> VirtualGamePad lets you use your Android phone as a gamepad for your Windows and Linux PCs.
+
+This website is generated via Hugo, and the source markdown files are accessible via GitHub.
+
+The following rule can be used to access the markdown files:
+https://kitswas.github.io/VirtualGamePad/<path>/ -> https://raw.githubusercontent.com/kitswas/VirtualGamePad/refs/heads/main/content/<path>.md
+
+With the index/home page being the only exception:
+https://kitswas.github.io/VirtualGamePad/ -> https://raw.githubusercontent.com/kitswas/VirtualGamePad/refs/heads/main/content/_index.md
+
+## Optional
+
+- [Sitemap](https://kitswas.github.io/VirtualGamePad/sitemap.xml)
