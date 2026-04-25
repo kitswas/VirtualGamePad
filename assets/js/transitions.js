@@ -139,6 +139,7 @@ document.addEventListener('click', e => {
     if (toggle) {
         const sidebar = document.getElementById('sidebar');
         sidebar.classList.toggle('active');
+        toggle.classList.toggle('active');
         return;
     }
 
@@ -148,6 +149,8 @@ document.addEventListener('click', e => {
     const sidebar = document.getElementById('sidebar');
     if (sidebar && sidebar.classList.contains('active')) {
         sidebar.classList.remove('active');
+        const toggle = document.querySelector('.menu-toggle');
+        if (toggle) toggle.classList.remove('active');
     }
 
     if (link &&

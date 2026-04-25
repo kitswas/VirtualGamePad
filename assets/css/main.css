@@ -111,16 +111,20 @@ body {
   background: var(--accent-color);
 }
 
-.sidebar.active ~ .menu-toggle span:first-child {
+.menu-toggle.active span {
+  background: #fff;
+}
+
+.menu-toggle.active span:first-child {
   transform: rotate(45deg);
 }
 
-.sidebar.active ~ .menu-toggle span:nth-child(2) {
+.menu-toggle.active span:nth-child(2) {
   opacity: 0;
   transform: translateX(20px);
 }
 
-.sidebar.active ~ .menu-toggle span:nth-child(3) {
+.menu-toggle.active span:nth-child(3) {
   transform: rotate(-45deg);
 }
 
