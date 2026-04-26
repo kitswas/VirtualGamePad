@@ -32,13 +32,13 @@ Connect via Wi-Fi ([or USB](/FAQ/#usb-connection)) and enjoy!
 
 VirtualGamePad running on an Android 12 device:
 
-![VirtualGamePad]({{< asset "VGP.svg" >}})
+![VirtualGamePad](../static/assets/VGP.svg)
 
-![VirtualGamePad Dark]({{< asset "VGP_night.svg" >}})
+![VirtualGamePad Dark](../static/assets/VGP_night.svg)
 
 VirtualGamePad Server running on a PC:
 
-![VirtualGamePad Server]({{< asset "VGP_Server.png" >}})
+![VirtualGamePad Server](../static/assets/VGP_Server.png)
 
 ## Installation
 
@@ -46,7 +46,7 @@ To use VirtualGamePad, you need to install the Android app (client) on your phon
 
 To be notified of new updates, you can star ⭐ or watch 👁️ the source repositories on GitHub.
 
-![GitHub Star and Watch]({{< asset "GitHub_Star_Watch.png" >}})
+![GitHub Star and Watch](../static/assets/GitHub_Star_Watch.png)
 
 ### Android
 

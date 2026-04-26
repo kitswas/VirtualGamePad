@@ -1,0 +1,15 @@
+{{- $src := .Destination -}} {{- if hasPrefix $src "../static/assets/" -}} {{-
+$src = strings.TrimPrefix "../static/" $src -}} {{- $src = $src | relURL -}} {{-
+end -}}
+<img
+  src="{{ $src | safeURL }}"
+  alt="{{ .Text }}"
+  {{
+  with
+  .Title
+  }}
+  title="{{ . }}"
+  {{
+  end
+  }}
+/>
