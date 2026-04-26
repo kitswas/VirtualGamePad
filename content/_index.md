@@ -14,9 +14,9 @@ It's similar to DroidJoy, but ***free*** and ***open-source***.
 > **No ads, no tracking, no paywalls.**
 
 <video controls preload="metadata" style="width: 100%; border-radius: 8px;">
-  <source src="/assets/VirtualGamePad.mp4" type="video/mp4">
+  <source src='{{< asset "VirtualGamePad.mp4" >}}' type="video/mp4">
   Sorry, your browser does not support embedded videos. Click here to view:
-  <a href="/assets/VirtualGamePad.mp4" target="_blank">VirtualGamePad Intro Video</a>
+  <a href='{{< asset "VirtualGamePad.mp4" >}}' target="_blank">VirtualGamePad Intro Video</a>
 </video>
 
 ## Benefits of using VirtualGamePad
@@ -32,13 +32,13 @@ Connect via Wi-Fi ([or USB](/FAQ/#usb-connection)) and enjoy!
 
 VirtualGamePad running on an Android 12 device:
 
-![VirtualGamePad](/assets/VGP.svg)
+![VirtualGamePad]({{< asset "VGP.svg" >}})
 
-![VirtualGamePad Dark](/assets/VGP_night.svg)
+![VirtualGamePad Dark]({{< asset "VGP_night.svg" >}})
 
 VirtualGamePad Server running on a PC:
 
-![VirtualGamePad Server](/assets/VGP_Server.png)
+![VirtualGamePad Server]({{< asset "VGP_Server.png" >}})
 
 ## Installation
 
@@ -46,23 +46,23 @@ To use VirtualGamePad, you need to install the Android app (client) on your phon
 
 To be notified of new updates, you can star ⭐ or watch 👁️ the source repositories on GitHub.
 
-![GitHub Star and Watch](/assets/GitHub_Star_Watch.png)
+![GitHub Star and Watch]({{< asset "GitHub_Star_Watch.png" >}})
 
 ### Android
 
 Available on F-Droid and GitHub.
 
-[<img src="/assets/badge_F_Droid_download.svg" alt="Get it on F-Droid" style="height:4em;"> ![Downloads last month](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fkitswas%2Ffdroid-metrics-dashboard%2Fraw%2Frefs%2Fheads%2Fmain%2Fprocessed%2Fmonthly%2Fio.github.kitswas.virtualgamepadmobile.json&query=%24.total_downloads&logo=fdroid&label=Downloads%20last%20month) ![Downloads (all time)](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fkitswas%2Ffdroid-metrics-dashboard%2Fraw%2Frefs%2Fheads%2Fmain%2Fprocessed%2Ftotal%2Fio.github.kitswas.virtualgamepadmobile.json&query=%24.total_downloads&logo=fdroid&label=Downloads%20(all%20time)) ![F-Droid latest version](https://img.shields.io/f-droid/v/io.github.kitswas.virtualgamepadmobile?logo=f-droid)](https://f-droid.org/packages/io.github.kitswas.virtualgamepadmobile/)
+[<img src='{{< asset "badge_F_Droid_download.svg" >}}' alt="Get it on F-Droid" style="height:4em;"> ![Downloads last month](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fkitswas%2Ffdroid-metrics-dashboard%2Fraw%2Frefs%2Fheads%2Fmain%2Fprocessed%2Fmonthly%2Fio.github.kitswas.virtualgamepadmobile.json&query=%24.total_downloads&logo=fdroid&label=Downloads%20last%20month) ![Downloads (all time)](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2Fkitswas%2Ffdroid-metrics-dashboard%2Fraw%2Frefs%2Fheads%2Fmain%2Fprocessed%2Ftotal%2Fio.github.kitswas.virtualgamepadmobile.json&query=%24.total_downloads&logo=fdroid&label=Downloads%20(all%20time)) ![F-Droid latest version](https://img.shields.io/f-droid/v/io.github.kitswas.virtualgamepadmobile?logo=f-droid)](https://f-droid.org/packages/io.github.kitswas.virtualgamepadmobile/)
 
 Or, grab the latest APK from the [releases page](https://github.com/kitswas/VirtualGamePad-Mobile/releases) and install it on your phone.  
-[<img src="/assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (all /assets, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-Mobile/total)
+[<img src='{{< asset "badge_Github_download.svg" >}}' alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (all /assets, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-Mobile/total)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-Mobile?logo=github)](https://github.com/kitswas/VirtualGamePad-Mobile/releases/latest)
 
 ### Windows
 
 Grab the latest archive(Virtual-GamePad-Windows.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it and run `VGamepadPC.exe`.  
 The experimental Gamepad Input mode has extra requirements, see the in-app description on the Preferences page.  
-[<img src="/assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
+[<img src='{{< asset "badge_Github_download.svg" >}}' alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Windows.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 ### Linux
@@ -70,7 +70,7 @@ The experimental Gamepad Input mode has extra requirements, see the in-app descr
 Grab the latest archive(Virtual-GamePad-Ubuntu.zip) from the [releases page](https://github.com/kitswas/VirtualGamePad-PC/releases), extract it, `chmod +x bin/VGamepadPC` and `bin/VGamepadPC`.  
 If Qt complains about 'xcb-cursor0 or libxcb-cursor0 is needed to load the Qt xcb platform plugin', `sudo apt install libxcb-cursor0` should fix it.  
 See the in-app description on the Preferences page.  
-[<img src="/assets/badge_Github_download.svg" alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
+[<img src='{{< asset "badge_Github_download.svg" >}}' alt="Get it on GitHub" style="height:4em;"> ![GitHub Downloads (specific asset, all releases)](https://img.shields.io/github/downloads/kitswas/VirtualGamePad-PC/Virtual-GamePad-Ubuntu.zip)
 ![GitHub Latest Release](https://img.shields.io/github/v/release/kitswas/VirtualGamePad-PC?logo=github)](https://github.com/kitswas/VirtualGamePad-PC/releases/latest)
 
 We tested it on Ubuntu/Debian only. But it should work on other distributions as well.
@@ -88,8 +88,8 @@ Having problems? See the [Troubleshooting document](/Troubleshooting/).
 ## How it works
 
 <video controls preload="metadata" style="width: 100%; border-radius: 8px;">
-  <source src="/assets/VirtualGamePad_HowItWorks.mp4" type="video/mp4">
-  Sorry, your browser does not support embedded videos. Click here to view: [VirtualGamePad Under the Hood](/assets/VirtualGamePad_HowItWorks.mp4)
+  <source src='{{< asset "VirtualGamePad_HowItWorks.mp4" >}}' type="video/mp4">
+  Sorry, your browser does not support embedded videos. Click here to view: [VirtualGamePad Under the Hood]({{< asset "VirtualGamePad_HowItWorks.mp4" >}})
 </video>
 
 ## Source Code

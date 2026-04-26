@@ -1,0 +1,3 @@
+{{- $path := .Get 0 -}} {{- $path = strings.TrimPrefix "/" $path -}} {{- $path =
+strings.TrimPrefix "assets/" $path -}} {{- (printf "assets/%s" $path) | relURL
+-}}
