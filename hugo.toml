@@ -1,4 +1,4 @@
-languageCode = "en-in"
+locale = "en-in"
 title = "VirtualGamePad"
 theme = "vgp-theme"
 
@@ -29,7 +29,7 @@ unsafe = true
 
 [languages]
 [languages.en]
-languageName = "English"
+label = "English"
 weight = 1
 
 [menu]
