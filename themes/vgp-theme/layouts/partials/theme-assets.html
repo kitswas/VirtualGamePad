@@ -1,0 +1,31 @@
+{{- $theme := .theme | default "vgp" -}} {{- $vgpStyle := resources.Get
+"css/main.css" -}} {{- $hiTechStyle := resources.Get "css/hi-tech.css" -}} {{-
+$playfulStyle := resources.Get "css/playful.css" -}} {{- $vgpRel := "" -}} {{-
+if $vgpStyle -}} {{- $vgpStyle = $vgpStyle | minify | fingerprint -}} {{-
+$vgpRel = $vgpStyle.RelPermalink -}} {{- end -}} {{- $hiTechRel := "" -}} {{- if
+$hiTechStyle -}} {{- $hiTechStyle = $hiTechStyle | minify | fingerprint -}} {{-
+$hiTechRel = $hiTechStyle.RelPermalink -}} {{- end -}} {{- $playfulRel := "" -}}
+{{- if $playfulStyle -}} {{- $playfulStyle = $playfulStyle | minify |
+fingerprint -}} {{- $playfulRel = $playfulStyle.RelPermalink -}} {{- end -}} {{-
+$themeMap := dict -}} {{- if $vgpRel -}} {{- $themeMap = merge $themeMap (dict
+"vgp" $vgpRel) -}} {{- end -}} {{- if $hiTechRel -}} {{- $themeMap = merge
+$themeMap (dict "hi-tech" $hiTechRel) -}} {{- end -}} {{- if $playfulRel -}} {{-
+$themeMap = merge $themeMap (dict "playful" $playfulRel) -}} {{- end -}} {{-
+$currentRel := "" -}} {{- if eq $theme "vgp" -}} {{- $currentRel = $vgpRel -}}
+{{- else if eq $theme "hi-tech" -}} {{- $currentRel = $hiTechRel -}} {{- else if
+eq $theme "playful" -}} {{- $currentRel = $playfulRel -}}{{- end -}} {{- if
+$currentRel -}}
+<link
+  rel="stylesheet"
+  href="{{ $currentRel }}"
+  id="theme-stylesheet"
+  data-theme="{{ $theme }}"
+/>
+<script
+  id="theme-style-map"
+  type="application/json"
+  data-default-theme="{{ $theme }}"
+>
+  {{ $themeMap | jsonify | safeJS }}
+</script>
+{{- end -}}

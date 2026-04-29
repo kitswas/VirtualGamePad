@@ -4,11 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
-    {{ $style := resources.Get "css/main.css" }}
-    {{ if $style }}
-        {{ $style = $style | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ $style.RelPermalink }}">
-    {{ end }}
+    {{ partial "theme-assets.html" (dict "theme" "vgp") }}
     {{ partial "head-meta.html" . }}
     {{ if .Params.math }}
         {{ partial "latex.html" . }}
@@ -44,6 +40,7 @@
                     {{ end }}
                 </ul>
             </nav>
+            {{ partial "theme-switcher.html" (dict "theme" "vgp") }}
         </aside>
 
         <main class="content">
@@ -57,5 +54,10 @@
             {{ end }}
         </aside>
     </div>
+    {{ $switcherCss := resources.Get "css/theme-switcher.css" | minify | fingerprint }}
+    {{ $switcherJs := resources.Get "js/theme-switcher.js" | minify | fingerprint }}
+    {{ if and $switcherJs $switcherCss }}
+        <script src="{{ $switcherJs.RelPermalink }}" data-switcher-css="{{ $switcherCss.RelPermalink }}"></script>
+    {{ end }}
 </body>
 </html>

@@ -1,0 +1,30 @@
+.theme-switcher {
+  margin-top: 1.25rem;
+  padding: 1rem 0.75rem 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.theme-switcher__label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  color: var(--sidebar-text-muted);
+}
+
+.theme-switcher__select {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.theme-switcher__select:focus {
+  outline: 2px solid var(--accent-color-faded);
+  border-color: var(--accent-color);
+}

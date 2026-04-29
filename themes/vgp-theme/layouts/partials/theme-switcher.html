@@ -1,0 +1,9 @@
+{{- $theme := .theme | default "vgp" -}}
+<div class="theme-switcher" aria-label="Theme switcher">
+  <label class="theme-switcher__label" for="theme-select">Theme</label>
+  <select id="theme-select" class="theme-switcher__select" name="theme">
+    <option value="vgp" {{ if eq $theme "vgp" }}selected{{ end }}>Default</option>
+    <option value="hi-tech" {{ if eq $theme "hi-tech" }}selected{{ end }}>Hi-Tech</option>
+    <option value="playful" {{ if eq $theme "playful" }}selected{{ end }}>Playful</option>
+  </select>
+</div>

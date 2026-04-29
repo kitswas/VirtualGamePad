@@ -1,11 +1,12 @@
 locale = "en-in"
 title = "VirtualGamePad"
 theme = [
-	"bookprint",
+	"hi-tech",
+	"playful",
 	"vgp-theme",
 ] # vgp-theme MUST be present at the end of the list
-# Available themes: 
-# hi-tech, playful, neon, bookprint, vgp-theme
+# Available themes:
+# hi-tech, playful, vgp-theme
 
 [params]
 logo = "assets/SquareIcon.png"
