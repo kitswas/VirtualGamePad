@@ -24,3 +24,5 @@
 {{ with .Site.Params.open_graph_image }}
 <meta name="twitter:image" content="{{ . | absURL }}" />
 {{ end }}
+
+{{ partial "schema.html" . }}

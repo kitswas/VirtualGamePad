@@ -1,0 +1,39 @@
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "{{ .Site.Title }}",
+  "operatingSystem": "Android, Windows, Linux",
+  "applicationCategory": "GameApplication",
+  "applicationSubCategory": "Virtual Gamepad",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "{{ with .Description }}{{ . | plainify | chomp }}{{ else }}{{ .Site.Params.description | plainify | chomp }}{{ end }}",
+  "url": "{{ .Permalink }}",
+  "downloadUrl": "https://github.com/kitswas/VirtualGamePad-Mobile/releases",
+  "softwareVersion": "latest",
+  "image": "{{ .Site.Params.open_graph_image | absURL }}",
+  "screenshot": [
+    "{{ "assets/VGP.svg" | absURL }}",
+    "{{ "assets/VGP_night.svg" | absURL }}",
+    "{{ "assets/VGP_Server.png" | absURL }}"
+  ],
+  "featureList": [
+    "Free and Open Source",
+    "Secure",
+    "Easy to Use",
+    "No Bloat",
+    "Economical & Eco-friendly"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "kitswas",
+    "url": "https://github.com/kitswas"
+  }
+}
+</script>
+{{ end }}
