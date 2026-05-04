@@ -1,4 +1,6 @@
 const themeStorageKey = 'vgp-theme';
+const scriptTag = document.currentScript;
+const switcherHref = scriptTag ? scriptTag.getAttribute('data-switcher-css') : null;
 
 function getThemeMap() {
 	const mapNode = document.getElementById('theme-style-map');
@@ -38,10 +40,6 @@ function applyTheme(theme, themeMap) {
 }
 
 function loadSwitcherStyles() {
-	const scriptTag = document.currentScript;
-	if (!scriptTag) return;
-
-	const switcherHref = scriptTag.getAttribute('data-switcher-css');
 	if (!switcherHref) return;
 
 	if (document.querySelector('link[data-switcher-css]')) return;
@@ -52,6 +50,9 @@ function loadSwitcherStyles() {
 	link.setAttribute('data-switcher-css', 'true');
 	document.head.appendChild(link);
 }
+
+// Load styles immediately
+loadSwitcherStyles();
 
 function initThemeSwitcher() {
 	const themeMap = getThemeMap();
@@ -74,7 +75,6 @@ function initThemeSwitcher() {
 
 function initThemeSwitcherAfterRender() {
 	requestAnimationFrame(() => {
-		loadSwitcherStyles();
 		initThemeSwitcher();
 	});
 }
