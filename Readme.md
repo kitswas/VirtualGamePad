@@ -24,7 +24,7 @@ hugo server --disableFastRender
 Production build:
 
 ```bash
-hugo build
+hugo build --minify # --watch to rebuild automatically on change
 # pnpx server public # Or any other server of your choice, to see the built site
 ```
 
