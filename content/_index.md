@@ -94,7 +94,7 @@ Having problems? See the [Troubleshooting document](/Troubleshooting/).
 
 ## Source Code
 
-Glad you asked! VirtualGamePad is open source and licensed under the [GPLv3 licence](LICENCE.TXT).
+Glad you asked! VirtualGamePad is open source and licensed under the [GPLv3 licence](https://github.com/kitswas/VirtualGamePad/blob/main/LICENCE.TXT).
 
 VirtualGamePad uses open-source libraries and /assets which are governed by their own licences.
 
