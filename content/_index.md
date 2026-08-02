@@ -107,8 +107,4 @@ Visit the [companion website](https://kitswas.github.io/VirtualGamePad-PC/) to s
 
 ### Star History
 
-<picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=kitswas/VirtualGamePad,kitswas/VirtualGamePad-PC,kitswas/VirtualGamePad-Mobile&type=Date&theme=dark" />
- <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=kitswas/VirtualGamePad,kitswas/VirtualGamePad-PC,kitswas/VirtualGamePad-Mobile&type=Date" />
- <img loading="lazy" alt="VirtualGamePad Star History Chart" src="https://api.star-history.com/svg?repos=kitswas/VirtualGamePad,kitswas/VirtualGamePad-PC,kitswas/VirtualGamePad-Mobile&type=Date" />
-</picture>
+[![VirtualGamePad Star History Chart](https://raw.githubusercontent.com/kitswas/generate-star-history/refs/heads/main/assets/star-history-virtualgamepad.svg)](https://github.com/kitswas/generate-star-history)
