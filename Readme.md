@@ -29,3 +29,7 @@ hugo build --minify # --watch to rebuild automatically on change
 ```
 
 A GitHub Actions workflow handles build and deployment.
+
+## Star History
+
+[![VirtualGamePad Star History Chart](https://raw.githubusercontent.com/kitswas/generate-star-history/refs/heads/main/assets/star-history-virtualgamepad.svg)](https://github.com/kitswas/generate-star-history)
