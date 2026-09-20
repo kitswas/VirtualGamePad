@@ -23,7 +23,7 @@ Welcome to the VirtualGamePad project! We're building a virtual gamepad that let
 - New stuff gets added regularly
 - Your feedback directly shapes what we build next
 
-Go see [the roadmap](/Roadmap/).
+Go see [the roadmap](Roadmap.md).
 
 ## ⚠️ What to Expect
 
