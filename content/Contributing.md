@@ -42,7 +42,7 @@ We want VirtualGamePad to be the **easiest, lightest, most reliable way** to use
 
 ### Find and Report Bugs
 
-*This is HUGE for us!*
+_This is HUGE for us!_
 
 - Try to break things (seriously!)
 - Test with your favorite games
@@ -58,7 +58,7 @@ We want VirtualGamePad to be the **easiest, lightest, most reliable way** to use
 
 ### Test on Your Devices
 
-*We can't test everything ourselves!*
+_We can't test everything ourselves!_
 
 - Different Android phones/tablets
 - Different screen sizes
@@ -92,7 +92,7 @@ It's actually 4 connected projects:
 - **[VirtualGamePad-Mobile](https://github.com/kitswas/VirtualGamePad-Mobile)** - Android app version
 - **[VGP_Data_Exchange](https://github.com/kitswas/VGP_Data_Exchange)** - The behind-the-scenes communication code
 
-*Don't worry about the technical details - just know that bugs could happen in any part!*
+_Don't worry about the technical details - just know that bugs could happen in any part!_
 
 ## 📋 How to Report Issues
 
@@ -138,6 +138,25 @@ Each repository has its own README with setup instructions. Pick the one that ma
 
 - **Desktop server**: VirtualGamePad-PC (C++/Qt)
 - **Android client**: VirtualGamePad-Mobile (Kotlin/Android)
+
+### Read This Before Contributing
+
+> [!IMPORTANT]  
+> Code contributions are like gifting someone a pet: once accepted, I still have to care for it.  
+> A small, focused contribution is more likely to be accepted than a large or speculative one.  
+> Every accepted change adds to the project's maintenance burden.
+
+**Focused bug fixes are always welcome.** For non-trivial features or architectural changes, _discuss the idea_ before opening a pull request. Protocol and cross-repository changes are not accepted by default; propose them only if I have explicitly invited them.
+
+Before proposing a change, consider the Guiding Principles in the [roadmap](Roadmap.md#guiding-principles).
+
+Do not submit a patch that requires me to discover the problem, design the solution, find the missing tests, or repair the implementation. A working patch is not automatically a wanted patch, and I may close contributions that do not fit the project's direction.
+
+> [!CAUTION]  
+>
+> #### AI-Assisted Contributions
+>
+> AI tools may assist with contributions, but you remain responsible for any content you submit.
 
 ---
 
