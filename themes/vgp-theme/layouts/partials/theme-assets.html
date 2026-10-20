@@ -28,4 +28,8 @@ $currentRel -}}
 >
   {{ $themeMap | jsonify | safeJS }}
 </script>
+{{- end -}} {{- $blogStyle := resources.Get "css/blog.css" -}} {{- $blogRel := "" -}}
+{{- if $blogStyle -}} {{- $blogStyle = $blogStyle | minify | fingerprint -}} {{-
+$blogRel = $blogStyle.RelPermalink -}} {{- end -}} {{- if $blogRel -}}
+<link rel="stylesheet" href="{{ $blogRel }}" id="blog-stylesheet" />
 {{- end -}}

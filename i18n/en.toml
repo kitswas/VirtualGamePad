@@ -22,6 +22,15 @@ other = "Roadmap"
 [privacy]
 other = "Privacy Policy"
 
+[blog]
+other = "Blog"
+
+[feed_label]
+other = "Subscribe"
+
+[feed_title]
+other = "Subscribe to the blog feed (RSS)"
+
 [menu_title]
 other = "Menu"
 
