@@ -6,6 +6,9 @@
             {{ if not .Date.IsZero }}
             <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
             {{ end }}
+            {{ if and (not .Lastmod.IsZero) (not .Date.IsZero) (gt (.Lastmod.Unix) (.Date.Unix)) }}
+            <span class="post-updated">{{ i18n "post_updated" }} <time class="post-date" datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod.Format "January 2, 2006" }}</time></span>
+            {{ end }}
             <span class="post-reading-time">{{ .ReadingTime }} min read</span>
         </div>
         {{ if .Params.toc }}

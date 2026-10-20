@@ -8,6 +8,9 @@ theme = [
 # Available themes:
 # hi-tech, playful, vgp-theme
 
+# Lets ":git" work as a lastmod source (see [frontmatter] below).
+enableGitInfo = true
+
 [params]
 logo = "assets/SquareIcon.png"
 description = "Virtual Gamepad for Android and PC"
@@ -89,6 +92,10 @@ url = "/blog/"
 weight = 9
 
 # For GH Pages, see https://gohugo.io/host-and-deploy/host-on-github-pages/#step-2
+[frontmatter]
+# Last modified date: explicit "lastmod" wins, then the Git author date of the
+# file's last commit, then the publish date.
+lastmod = ['lastmod', 'modified', ':git', 'date']
 [caches]
 [caches.images]
 dir = ':cacheDir/images'

@@ -30,6 +30,25 @@ hugo build --minify # --watch to rebuild automatically on change
 
 A GitHub Actions workflow handles build and deployment.
 
+## Writing blog posts
+
+Posts live in `content/blog/`. Create one with the archetype, which fills in the
+title from the file name, today's date and `draft: true`:
+
+```bash
+hugo new content blog/my-post.md
+```
+
+Preview drafts before publishing:
+
+```bash
+hugo server --buildDrafts
+```
+
+The "last updated" date shown on a post comes from the Git author date of the
+commit that last touched the file. Set `lastmod` in the front matter to
+override it.
+
 ## Star History
 
 [![VirtualGamePad Star History Chart](https://raw.githubusercontent.com/kitswas/generate-star-history/refs/heads/main/assets/star-history-virtualgamepad.svg)](https://github.com/kitswas/generate-star-history)

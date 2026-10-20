@@ -31,6 +31,9 @@ other = "Subscribe"
 [feed_title]
 other = "Subscribe to the blog feed (RSS)"
 
+[post_updated]
+other = "Last updated"
+
 [menu_title]
 other = "Menu"
 
