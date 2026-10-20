@@ -2,6 +2,7 @@
 <article class="page">
     <header>
         <h1>{{ .Title }}</h1>
+        {{ partial "page-meta.html" . }}
     </header>
     <div class="page-content">
         {{ .Content }}
@@ -10,12 +11,7 @@
         <ul class="post-list">
             {{ range $posts }}
             <li class="post-item">
-                <div class="post-meta">
-                    {{ if not .Date.IsZero }}
-                    <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-                    {{ end }}
-                    <span class="post-reading-time">{{ .ReadingTime }} min read</span>
-                </div>
+                {{ partial "page-meta.html" . }}
                 <h2 class="post-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
                 {{ with .Summary }}
                 <p class="post-summary">{{ . | plainify | truncate 240 }}</p>

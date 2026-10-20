@@ -15,7 +15,7 @@
   border-bottom: none;
 }
 
-.content .post-meta {
+.content .page-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -24,12 +24,12 @@
   color: var(--text-muted);
 }
 
-.content .post-meta > * + *::before {
+.content .page-meta > * + *::before {
   content: "·";
   margin-right: 0.5rem;
 }
 
-.content .post-date {
+.content .page-date {
   font-weight: 600;
 }
 

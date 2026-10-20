@@ -4,8 +4,6 @@ description: The VirtualGamePad Privacy Policy
 toc: true
 ---
 
-_Last updated: July 28, 2025._
-
 This Privacy Policy applies to the VirtualGamePad website, repositories, PC server, and mobile app (collectively, "VirtualGamePad") across all supported platforms.
 
 ## Disclaimer

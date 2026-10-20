@@ -1,0 +1,14 @@
+{{- $page := . -}}
+{{- $showDate := not $page.Date.IsZero -}}
+{{- $showUpdated := and (not $page.Lastmod.IsZero) (or (not $showDate) (gt ($page.Lastmod.Unix) ($page.Date.Unix))) -}}
+{{- if or $showDate $showUpdated -}}
+<div class="page-meta">
+    {{- if $showDate }}
+    <time class="page-date" datetime="{{ $page.Date.Format "2006-01-02" }}">{{ $page.Date.Format "January 2, 2006" }}</time>
+    {{- end }}
+    {{- if $showUpdated }}
+    <span class="page-updated">{{ i18n "page_updated" }} <time class="page-date" datetime="{{ $page.Lastmod.Format "2006-01-02" }}">{{ $page.Lastmod.Format "January 2, 2006" }}</time></span>
+    {{- end }}
+    <span class="page-reading-time">{{ $page.ReadingTime }} min read</span>
+</div>
+{{- end -}}
