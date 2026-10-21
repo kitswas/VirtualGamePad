@@ -17,6 +17,7 @@ description = "Virtual Gamepad for Android and PC"
 accent_image = "assets/GamepadIcon.png"
 accent_color = "#157878"
 open_graph_image = "assets/open-graph-image.png"
+repo = "https://github.com/kitswas/VirtualGamePad"
 
 [markup]
 [markup.goldmark]

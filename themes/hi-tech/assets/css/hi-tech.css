@@ -318,6 +318,12 @@ body {
   text-decoration: underline;
 }
 
+.edit-link {
+  display: inline-block;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
 .content img {
   max-width: 100%;
   height: auto;

@@ -1,0 +1,5 @@
+{{- $page := . -}}
+{{- if and $page.File (ne $page.Section "blog") -}}
+{{- $repo := site.Params.repo | default "https://github.com/kitswas/VirtualGamePad" -}}
+<a class="edit-link" href="{{ $repo }}/edit/main/content/{{ $page.File.Path }}">{{ i18n "edit_page" }}</a>
+{{- end -}}

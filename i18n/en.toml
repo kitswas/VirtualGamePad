@@ -39,3 +39,6 @@ other = "Menu"
 
 [toc_title]
 other = "Table of Contents"
+
+[edit_page]
+other = "Edit this page"
