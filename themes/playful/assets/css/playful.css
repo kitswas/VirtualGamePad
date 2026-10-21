@@ -301,7 +301,9 @@ body {
 }
 
 .edit-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   margin-top: 2rem;
   font-size: 0.9rem;
 }
