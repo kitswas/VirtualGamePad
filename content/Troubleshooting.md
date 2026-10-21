@@ -19,6 +19,8 @@ Then, restart the server and try connecting again.
 
 _Do this before complaining about the app not working._
 
+**The server only listens on IPv4.** Use the IPv4 address shown by the server, or scan its QR code. IPv6 addresses are not supported.
+
 ## Help! The client is connected but the Gamepad doesn't work for any game
 
 Check the Preferences screen in the server. Different input methods (Keyboard/Mouse or Gamepad) have different requirements.
