@@ -5,7 +5,7 @@ description: |
 toc: true
 ---
 
-If your problem is not covered here, [file an issue](/FAQ/#bug-reports-and-feature-requests).
+If your problem is not covered here, [file an issue](/faq/#bug-reports-and-feature-requests).
 
 ## Help! I cannot connect to the server
 
@@ -47,7 +47,7 @@ Read [How it works](https://kitswas.github.io/VirtualGamePad-PC/#how-it-works) t
 
 ## Help! The gamepad feels laggy/unresponsive
 
-This is covered in [the FAQ.](/FAQ/#feels-laggyunresponsive)
+This is covered in [the FAQ.](/faq/#feels-laggyunresponsive)
 
 ## Bonus XKCD Comic
 

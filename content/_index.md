@@ -24,7 +24,7 @@ It's similar to DroidJoy, but ***free*** and ***open-source***.
 - **Free and Open Source**: No ads, no tracking, no paywalls.
 - **Secure**: The code is open for anyone to review. No need to trust a random app from who-knows-where.
 - **Easy to Use**: Just install the app on your phone and download the portable server on your PC.
-Connect via Wi-Fi ([or USB](/FAQ/#usb-connection)) and enjoy!
+Connect via Wi-Fi ([or USB](/faq/#usb-connection)) and enjoy!
 - **No Bloat**: The server is a portable app. No installation. No extra drivers (like vJoy) required.
 - **Economical & Eco-friendly**: No need to buy a new gamepad. Use your old phone instead. Save money and reduce e-waste.
 
@@ -81,7 +81,7 @@ Run the server on your PC and the client on your phone.
 Connect to the server from the Android app by entering the IP address and port of the server.  
 Both devices need to be on the same network.
 
-[**Read the FAQ here**](/FAQ/).
+[**Read the FAQ here**](/faq/).
 
 Having problems? See the [Troubleshooting document](/Troubleshooting/).
 
