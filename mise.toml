@@ -1,0 +1,3 @@
+# Hugo site toolchain. Version must match HUGO_VERSION in .github/workflows/hugo.yml.
+[tools]
+hugo = "0.161.0"
