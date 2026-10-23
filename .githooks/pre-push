@@ -1,0 +1,11 @@
+#!/bin/sh
+# pre-push: block the push if the site does not build (template, content or
+# config breakage). This is the hard gate before code leaves the machine.
+# Bypass with `git push --no-verify`.
+
+command -v hugo >/dev/null 2>&1 || {
+	echo "pre-push: hugo is not on PATH. Install it (see Readme.md), then retry, or bypass with 'git push --no-verify'." >&2
+	exit 1
+}
+
+hugo --gc --minify

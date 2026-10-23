@@ -30,6 +30,16 @@ hugo build --minify # --watch to rebuild automatically on change
 
 A GitHub Actions workflow handles build and deployment.
 
+## Git hooks
+
+Enable the repository hooks once per clone:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+`pre-push` runs `hugo --gc --minify` and blocks pushing a site that does not build (`git push --no-verify` to bypass); `post-merge` runs the same build check after merges/pulls. Disable with `git config --unset core.hooksPath`.
+
 ## Writing blog posts
 
 Posts live in `content/blog/`. Create one with the archetype, which fills in the

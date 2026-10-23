@@ -1,0 +1,25 @@
+#!/bin/sh
+# post-merge: site build check after a merge or pull. The merge has already
+# landed, so this only reports: it never reverts or changes your tree.
+# A failure means the tree you are on does not build - fix forward or revert.
+
+if ! git rev-parse --verify ORIG_HEAD >/dev/null 2>&1; then
+	exit 0
+fi
+
+if ! git diff --name-only ORIG_HEAD HEAD |
+	grep -Eq '\.(md|html|toml|yaml|yml|css|js|json)$|^content/|^layouts/|^themes/|^static/|^i18n/|^archetypes/|^assets/'; then
+	exit 0
+fi
+
+if ! command -v hugo >/dev/null 2>&1; then
+	echo "post-merge: hugo not found - skipped the site build check (see Readme.md)."
+	exit 0
+fi
+
+if hugo --gc --minify; then
+	echo "post-merge: site build check passed."
+else
+	echo "post-merge: SITE BUILD CHECK FAILED - the merge has landed; fix forward or revert manually." >&2
+	exit 1
+fi
