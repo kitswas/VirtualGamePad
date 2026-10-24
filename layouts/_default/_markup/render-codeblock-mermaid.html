@@ -1,0 +1,11 @@
+{{ $seen := .Page.Store.Get "hasMermaid" }}
+<pre class="mermaid">
+  {{ .Inner | htmlEscape | safeHTML }}
+</pre>
+{{ if not $seen }}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm';
+  mermaid.initialize({ startOnLoad: true });
+</script>
+{{ end }}
+{{ .Page.Store.Set "hasMermaid" true }}
