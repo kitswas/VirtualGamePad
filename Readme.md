@@ -13,7 +13,7 @@ This repository contains the source code for the website.
 
 ## Building the website
 
-Requires [Hugo](https://gohugo.io/getting-started/installing/).
+Requires [Hugo](https://gohugo.io/getting-started/installing/). The pinned version (same as CI, see `[tools]` in `mise.toml`) installs with [mise](https://mise.jdx.dev/): `mise install`, then prefix commands with `mise exec --`.
 
 Dev server:
 
