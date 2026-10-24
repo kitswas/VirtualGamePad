@@ -8,22 +8,24 @@ description: "How to use mise as a meta-manager: pin small CLIs, detect or provi
 
 [The first VirtualGamePad devlog](devblog-2026-10-18.md) celebrated [mise](https://mise.jdx.dev/) as a task runner. That was the small half.
 
-Here's the large half: using mise to manage the toolchain itself. The post is a tutorial you can copy into any repository. VirtualGamePad is the worked example - five repos (phone app, PC server, shared protocol, docs site, build experiments) maintained by one person, where setup used to be the scariest part.
+Here's the large half: using mise to manage the toolchain itself. The post is a tutorial you can copy into any repository. VirtualGamePad is the worked example -- five repos (phone app, PC server, shared protocol, docs site, build experiments) maintained by one person, where setup used to be the scariest part.
 
 VirtualGamePad is modular by design --- a specialist with existing tools can clone and build a single component.  
 This setup lowers the barrier to entry, reduces errors, and makes work across components predictable.
 
-"Meta-manager" because mise does not build anything itself. It stands above the build tools - Gradle, CMake, Hugo - and makes sure the versions the project expects are present.
+"Meta-manager" because mise does not build anything itself. It stands above the build tools -- Gradle, CMake, Hugo -- and makes sure the versions the project expects are present.
 
 > [!NOTE]  
 > A second, less obvious use: **mise lets one repository host wildly different stacks** ---  
 > _a React frontend via pnpm and a Python FastAPI backend via uv_,  
 > or _a Qt server plus an Android client_  
-> --- with pinned, isolated toolchains and one setup entry point instead of a page of per-stack instructions.
+> -- with pinned, isolated toolchains and one setup entry point instead of a page of per-stack instructions.
 
 ## The problem, in four lines
 
-In my previous post, there's a comic ![The unholy setup](../../static/assets/VGP_ridiculous_setup_comic.png)
+In my previous post, there's a comic:
+
+![The unholy setup](../../static/assets/VGP_ridiculous_setup_comic.png)
 
 > **Me:** Hi, please help me test this.
 >
@@ -36,8 +38,8 @@ In my previous post, there's a comic ![The unholy setup](../../static/assets/VGP
 What you want instead is a conversation that starts: "install mise, then run the build task." To get there, the answers to "what do I need?" and "install it for me" have to live in the repo, not in human memory. Mise keeps each repo's toolchain predictable without turning the whole ecosystem into one giant install; OS prerequisites remain in the platform-specific build instructions.
 
 | Tool | Earlier | Now |
-| --- | --- | --- |
-| Qt | Install by hand, using the online installer. Pray that you picked the right subset of items in the GUI. (All is 20GB, minimal via custom install is 2GB) | `mise run setup` |
+| -- | -- | -- |
+| Qt | Install by hand, using the online installer. Pray that you picked the right subset of items in the GUI. (All is 20 GB, minimal via custom install is 2 GB.) | `mise run setup` |
 | CMake, Ninja | Multiple ways - bundled with Qt, from a package manager - you probably have multiple versions and no idea which is used | `mise install` |
 | Android SDK | Again, download Android Studio, fiddle with buttons and navigate a maze of popups to get a working setup | `mise run setup` |
 | Java | Use a package manager, get version conflicts, reconsider your life choices | `mise install` |
@@ -48,7 +50,7 @@ What you want instead is a conversation that starts: "install mise, then run the
 Let's lay down our requirements first:
 
 | | What we want | Why |
-| :--- | --- | --- |
+| :-- | -- | -- |
 | 1. | Setup reuses a detected system installation. If a contributor already has the Android SDK or Qt installed, mise should detect it and use it. | No repeated resource usage. |
 | 2. | mise should be invisible to the build systems. | Prevents tight coupling. Don't fix what isn't broken. |
 | 3. | Quick setup on fresh systems. | Run command, let it finish, continue. |
@@ -79,9 +81,9 @@ flowchart TD
     E -- "CMake cache file" --> D
 ```
 
-- **Layer 1 - pinned CLIs in the committed `mise.toml`.** Small, cheap, always wanted: `hugo`, `cmake`, `ninja`, `java`. Java is pinned to a major line; the other entries use exact versions.
-- **Layer 2 - heavyweight SDKs, provisioned only when missing.** Android is declared in the checkout's gitignored `mise.local.toml`; Qt is installed under `$HOME/Qt` by `aqtinstall`. When provisioning, each setup task records the location in the file its build system already reads; detected system paths are reused as-is.
-- **Layer 3 - the build systems, untouched.** Gradle still reads `local.properties`; CMake still reads its cache file. That's the trick: mise never needs to re-point them at anything.
+- **Layer 1 -- pinned CLIs in the committed `mise.toml`.** Small, cheap, always wanted: `hugo`, `cmake`, `ninja`, `java`. Java is pinned to a major line; the other entries use exact versions.
+- **Layer 2 -- heavyweight SDKs, provisioned only when missing.** Android is declared in the checkout's gitignored `mise.local.toml`; Qt is installed under `$HOME/Qt` by `aqtinstall`. When provisioning, each setup task records the location in the file its build system already reads; detected system paths are reused as-is.
+- **Layer 3 -- the build systems, untouched.** Gradle still reads `local.properties`; CMake still reads its cache file. That's the trick: mise never needs to re-point them at anything.
 
 Three rules fall out of this, and they are the whole method:
 
@@ -105,7 +107,7 @@ java = "21"          # Mobile
 
 The commented lines show other VirtualGamePad repos; keep the lines your repo actually needs.
 
-Rationale: these are version requests, not ice sculptures. `java = "21"` selects a Java 21 release managed by mise; it pins the major line, not an exact patch build. CMake, Ninja and Hugo have exact version entries. Pin versions that have already built the project successfully, and match CI where it specifies a version. On the website repo, `hugo = "0.161.0"` is the exact string the CI workflow uses for `HUGO_VERSION` - one source of truth for that question.
+Rationale: these are version requests, not ice sculptures. `java = "21"` selects a Java 21 release managed by mise; it pins the major line, not an exact patch build. CMake, Ninja and Hugo have exact version entries. Pin versions that have already built the project successfully, and match CI where it specifies a version. On the website repo, `hugo = "0.161.0"` is the exact string the CI workflow uses for `HUGO_VERSION` -- one source of truth for that question.
 
 Then run:
 
@@ -125,7 +127,7 @@ mise use android-sdk@23.0     # ❌ do not commit this
 Two reasons, both discovered the hard way:
 
 1. On a machine with a system Android SDK (like mine), mise downloads a parallel ~155 MB copy nobody asked for.
-2. mise sets `ANDROID_HOME` to that mise copy inside every task - so Gradle launched through mise can use a different SDK than the one configured for the rest of your machine. A "convenience" tool should not change where your builds go.
+2. mise sets `ANDROID_HOME` to that mise copy inside every task -- so Gradle launched through mise can use a different SDK than the one configured for the rest of your machine. A "convenience" tool should not change where your builds go.
 
 So the committed file stays honest and quiet about heavyweight SDKs:
 
@@ -147,9 +149,9 @@ sdk="$(sed -n 's/^sdk\.dir=//p' local.properties 2>/dev/null || true)"
 sdk="${sdk:-${ANDROID_HOME:-$ANDROID_SDK_ROOT}}"
 ```
 
-The two `|| true` / `:-` fallbacks matter more than they look. On Linux, assignment commands inherit the exit status of the command substitution; without the `|| true`, `sh -o errexit` (mise's default shell) kills your script the moment `local.properties` doesn't exist - which is precisely the fresh-clone case this task exists for. My first draft died this way; a code review caught it.
+The two `|| true` / `:-` fallbacks matter more than they look. On Linux, assignment commands inherit the exit status of the command substitution; without the `|| true`, `sh -o errexit` (mise's default shell) kills your script the moment `local.properties` doesn't exist -- which is precisely the fresh-clone case this task exists for. My first draft died this way; a code review caught it.
 
-Booking the found case, setup just says so and stops: nothing to install.
+In the found case, setup just says so and stops: nothing to install.
 
 ```sh
 if [ -d "$sdk" ]; then
@@ -162,29 +164,29 @@ Android is the worked example here because it has the most moving parts; the sam
 
 ## Step 4: provision only what's missing
 
-When the SDK genuinely isn't there, provision into mise's own directory - but _declare_ it, using `--env local`:
+When the SDK genuinely isn't there, provision into mise's own directory -- but _declare_ it, using `--env local`:
 
 ```sh
 mise use --env local android-sdk@23.0
 ```
 
-That one command does three things: downloads the tool, records it in `mise.local.toml`, and (from next run on) puts `sdkmanager`, `avdmanager`, the new `android` CLI and the platform tools on PATH for every task in this checkout - while staying invisible to git and to everyone else's machines.
+That one command does three things: downloads the tool, records it in `mise.local.toml`, and (from next run on) puts `sdkmanager`, `avdmanager`, the new `android` CLI and the platform tools on PATH for every task in this checkout -- while staying invisible to git and to everyone else's machines.
 
 Two follow-ups keep a build from dying two minutes later:
 
 ```sh
-mise exec android-sdk@23.0 -- \
+yes | mise exec android-sdk@23.0 -- \
   sdkmanager --licenses         # the first gradle build will fail without licenses
 mise exec android-sdk@23.0 -- \
   sdkmanager platform-tools     # adds adb; the plugin auto-PATHs it if present
 printf 'sdk.dir=%s\n' "$(mise where android-sdk@23.0)" > local.properties
 ```
 
-`local.properties` is already gitignored, and Gradle prefers it over any `ANDROID_HOME` - so the project keeps building against exactly what this task set up, deterministically. (On Windows the equivalent lines escape the path the same way Gradle expects; check the repo's `mise.toml` if you want the full copy-paste.)
+`local.properties` is already gitignored, and Gradle prefers it over any `ANDROID_HOME` -- so the project keeps building against exactly what this task set up, deterministically. (On Windows the equivalent lines escape the path the same way Gradle expects; check the repo's `mise.toml` if you want the full copy-paste.)
 
 ## Step 5: what mise can't manage gets a fallback
 
-Android has a mise backend. Qt does not, and its installer downloads are developer-installer-sized. The PC repo's fallback provisions it with `aqtinstall` - the command-line installer GitHub Actions already uses. These are the provisioning commands; setup runs the matching platform commands only when it cannot find a usable Qt install:
+Android has a mise backend. Qt does not, and its installer downloads are developer-installer-sized. The PC repo's fallback provisions it with `aqtinstall` -- the command-line installer GitHub Actions already uses. These are the provisioning commands; setup runs the matching platform commands only when it cannot find a usable Qt install:
 
 ```sh
 aqt='git+https://github.com/miurahr/aqtinstall.git@8c3695d4a4e1ceabf6a74dc6c79681656dc6b74b'
@@ -197,7 +199,7 @@ mise exec uv@latest -- uvx --from "$aqt" aqt install-tool windows desktop tools_
 mise exec uv@latest -- uvx --from "$aqt" aqt install-qt linux desktop 6.11.0 linux_gcc_64 -O "$HOME/Qt"
 ```
 
-Look carefully at what setup produces: it's the same `cmake_cache_<platform>.cmake` file a human has been writing by hand all along. For the _human path_, the Qt installer approach still works exactly as documented - the fallback is in addition, not instead. (The commit pin exists because aqt's released version can't read Qt's new 6.11+ package layout; the CI workflow documents the same fact.)
+Look carefully at what setup produces: it's the same `cmake_cache_<platform>.cmake` file a human has been writing by hand all along. For the _human path_, the Qt installer approach still works exactly as documented -- the fallback is in addition, not instead. (The commit pin exists because aqt's released version can't read Qt's new 6.11+ package layout; the CI workflow documents the same fact.)
 
 ## Step 6: wire the tasks that need it
 
@@ -221,7 +223,7 @@ description = "Check prerequisites (detect only - never installs anything)"
 run = "java -version && [... SDK detection ...]"
 ```
 
-It checks and says where each piece of the toolchain lives, or which setup task to run. A "doctor" that mutates your machine should alarm you; keep the pipeline: `mise run doctor` to understand, `mise run build` to get everything.
+It checks and says where each piece of the toolchain lives, or how a missing SDK will be provisioned. A "doctor" that mutates your machine should alarm you; keep the pipeline: `mise run doctor` to understand, `mise run build` to get everything.
 
 ## Two detours worth knowing before you run this
 
@@ -238,14 +240,14 @@ mise run doctor    # what do I have? what's missing?
 mise run build     # set up missing SDKs, then build
 ```
 
-For VirtualGamePad-PC, clone with submodules; Linux also needs a C++ compiler and `libevdev-dev` (see [Build.md](https://github.com/kitswas/VirtualGamePad-PC/blob/main/Build.md) for the package prerequisite). Device tasks in the Android repo also need a connected phone or emulator. On this website's repo, setup is unnecessary - `hugo` is pinned. The repo task definitions implement this policy for both sh and PowerShell; the snippets here show the key commands, not a replacement for those complete tasks.
+For VirtualGamePad-PC, clone with submodules; Linux also needs a C++ compiler and `libevdev-dev` (see [Build.md](https://github.com/kitswas/VirtualGamePad-PC/blob/main/Build.md) for the package prerequisite). Device tasks in the Android repo also need a connected phone or emulator. On this website's repo, setup is unnecessary -- `hugo` is pinned. The repo task definitions implement this policy for both sh and PowerShell; the snippets here show the key commands, not a replacement for those complete tasks.
 
 ## Adapting this to another project
 
 The VirtualGamePad specifics above are one instance of a general pattern. To apply it to your own repo, answer these questions:
 
 | Question | Android answer (worked example) | Qt answer (worked example) |
-| --- | --- | --- |
+| -- | -- | -- |
 | How does the build system discover the SDK? | `sdk.dir` in `local.properties` | `cmake_cache_<platform>.cmake` |
 | What is the detection order? | `sdk.dir`, then `ANDROID_HOME`, then `ANDROID_SDK_ROOT` | cache file, then env vars, then `qmake` on PATH |
 | How is it provisioned when missing? | `mise use --env local android-sdk@23.0` | `aqtinstall` into `$HOME/Qt` |
@@ -260,7 +262,7 @@ Checklist:
 5. Add a read-only `doctor` task and make `build`/`test` depend on `setup`.
 6. Keep OS-level prerequisites in the platform build docs.
 
-Nothing in this pass upgraded Gradle, AGP or CMake - those often require manual intervention, code modifications, etc.  
+Nothing in this pass upgraded Gradle, AGP or CMake -- those often require manual intervention, code modifications, etc.  
 A meta-manager makes the boring decisions automatic so the interesting ones (renovate the build system? bump language version?) stay deliberate.
 
-_**Note**: I have not tested this setup on a fresh VM. Minor edits might be needed on a clean OS. I have blindspots too, you know._
+_**Note**: I have not tested this setup on a fresh VM. Minor edits might be needed on a clean OS. I have blind spots too, you know._
