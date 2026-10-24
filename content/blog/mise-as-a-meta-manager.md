@@ -1,7 +1,7 @@
 ---
 title: "A mise-me: Mise as a meta-manager"
 date: 2026-10-24
-draft: true
+draft: false
 toc: true
 description: "How to use mise as a meta-manager: pin small CLIs, detect or provision heavyweight SDKs, and let build systems find them the usual way. A reusable pattern, with VirtualGamePad as the worked example."
 ---
@@ -49,7 +49,7 @@ What you want instead is a conversation that starts: "install mise, then run the
 
 Let's lay down our requirements first:
 
-| | What we want | Why |
+| N | What we want | Why |
 | :-- | -- | -- |
 | 1. | Setup reuses a detected system installation. If a contributor already has the Android SDK or Qt installed, mise should detect it and use it. | No repeated resource usage. |
 | 2. | mise should be invisible to the build systems. | Prevents tight coupling. Don't fix what isn't broken. |
