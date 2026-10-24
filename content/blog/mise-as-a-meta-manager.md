@@ -3,17 +3,29 @@ title: "Mise as a meta-manager"
 date: 2026-10-24
 draft: true
 toc: true
-description: "A mise-me: declare the toolchain to mise in three layers - pinned CLIs, a detect-or-provision setup task, and the build system that ignores mise entirely. The architecture, the rationale and the commands."
+description: "A mise-me: How to use mise for a layered toolchain: pin small CLIs, detect or provision heavyweight SDKs, and let build systems find them the usual way. The architecture, the rationale and the commands."
 ---
 
-[The first VirtualGamePad devlog](devblog-2026-10-18.md) celebrated [mise](https://mise.jdx.dev/) as a task runner. That was the small half.  
-Now, I'll show you how to build the other half: a setup where every repo declares its toolchain to mise, and a fresh dev goes from "spits out coffee" to a passing build without assistance.
+[The first VirtualGamePad devlog](devblog-2026-10-18.md) celebrated [mise](https://mise.jdx.dev/) as a task runner. That was the small half.
 
-One rule carries the whole design:
+Now, I'll show you how to build the other half: a setup where each repo pins the small tools, checks for heavyweight SDKs, and provisions only what is missing.  
+A new contributor can run the build task instead of hunting down every tool by hand; a few OS prerequisites still need to be installed separately.  
+VirtualGamePad is modular by design - a specialist with existing tools can clone and build a single component.  
+This setup aims to lower the barrier to entry, reduce errors, and promote work across components.
 
-> **The system tool wins when it is there. mise installs only when nothing is found.**
+Let's lay down our requirements first:
 
-"Meta-manager" because mise does not build anything itself. It stands above the build tools - Gradle, CMake, Hugo - and makes sure the version you get is the version the project was last verified with.
+| | What we want | Why |
+| :--- | --- | --- |
+| 1. | Setup reuses a detected system installation. If a contributor already has the Android SDK or Qt installed, mise should detect it and use it. | No repeated resouce usage. |
+| 2. | mise should be invisible to the build systems. | Prevents tight coupling. Don't fix what isn't broken. |
+| 3. | Quick setup on fresh systems. | Run command, let it finish, continue. |
+
+1. Setup reuses a detected system installation. If a contributor already has the Android SDK or Qt installed, mise should detect it and use it. No repeated resouce usage.
+2. mise should be invisible to the build systems. Prevents tight coupling. Don't fix what isn't broken.
+3. Quick setup on fresh systems. Run command, let it finish, continue.
+
+"Meta-manager" because mise does not build anything itself. It stands above the build tools - Gradle, CMake, Hugo - and helps provide the versions the project expects.
 
 ## The problem, in four lines
 
@@ -27,7 +39,7 @@ In my previous post, there's a comic ![The unholy setup](../../static/assets/VGP
 >
 > **You:** *spits out coffee*
 
-What you want instead is a conversation that starts: "install mise, then run one command." To get there, the answers to "what do I need?" and "install it for me" have to live in the repo, not in human memory.  
+What you want instead is a conversation that starts: "install mise, then run the build task." To get there, the answers to "what do I need?" and "install it for me" have to live in the repo, not in human memory. Mise keeps each repo's toolchain predictable without turning the whole ecosystem into one giant install; OS prerequisites remain in the platform-specific build instructions.
 
 | Tool | Earlier | Now |
 | --- | --- | --- |
@@ -49,18 +61,22 @@ config:
   layout: elk
 ---
 flowchart TD
-    A["layer 1<br/>committed mise.toml<br/><b>[tools]</b>: hugo, cmake, ninja, java<br/>small CLIs - every machine gets these"]
-    B["setup task<br/>found the system SDK? do nothing<br/>missing? provision"]
-    C["layer 2<br/>gitignored mise.local.toml<br/>provisioned SDKs<br/>android-sdk@23.0, Qt"]
-    D["layer 3<br/>the build systems: gradle, cmake, hugo<br/>never talk to mise - they find their SDKs<br/>the way they always did"]
+    A["layer 1<br/>committed mise.toml<br/><b>[tools]</b>: hugo, cmake, ninja, java<br/>small CLIs"]
+    B["setup tasks<br/>found a usable system SDK? reuse it<br/>missing? provision it"]
+    C["layer 2a: Android<br/>mise android-sdk@23.0<br/>gitignored mise.local.toml<br/>sdk.dir in local.properties"]
+    E["layer 2b: Qt<br/>aqtinstall under $HOME/Qt<br/>cmake_cache_*.cmake"]
+    D["layer 3<br/>the build systems: Gradle, CMake, Hugo<br/>they find SDKs through their usual files"]
     A --> B
-    B -- "only when missing" --> C
+    B -- "Android missing" --> C
+    B -- "Qt missing" --> E
+    B -- "already found" --> D
     A --> D
-    C -- "sdk.dir in local.properties,<br/>cmake_cache_*.cmake" --> D
+    C -- "local.properties" --> D
+    E -- "CMake cache file" --> D
 ```
 
-- **Layer 1 - pinned CLIs in the committed `mise.toml`.** Small, cheap, always wanted: `hugo`, `cmake`, `ninja`, `java`. Every machine gets exactly these versions, always.
-- **Layer 2 - heavyweight SDKs, never declared up front.** Android SDK, Qt. These flow in only when a machine lacks them, and only into that machine's gitignored `mise.local.toml`.
+- **Layer 1 - pinned CLIs in the committed `mise.toml`.** Small, cheap, always wanted: `hugo`, `cmake`, `ninja`, `java`. Java is pinned to a major line; the other entries use exact versions.
+- **Layer 2 - heavyweight SDKs, provisioned only when missing.** Android is declared in the checkout's gitignored `mise.local.toml`; Qt is installed under `$HOME/Qt` by `aqtinstall`. When provisioning, each setup task records the location in the file its build system already reads; detected system paths are reused as-is.
 - **Layer 3 - the build systems, untouched.** Gradle still reads `local.properties`; CMake still reads its cache file. That's the trick: mise never needs to re-point them at anything.
 
 ## Step 1: pin the small CLIs
@@ -75,7 +91,7 @@ java = "21"          # Mobile
 # hugo = "0.161.0"   # this website
 ```
 
-Rationale: these are version requests, not ice sculptures. `java = "21"` means "any 21.x" - mise takes what you have or fetches one. Whatever you pin, pin the version you have *already built with* (matching what CI or your contributors run), otherwise you have just guaranteed a fresh clone behaves differently from the machine that last shipped a release. On the website repo, `hugo = "0.161.0"` is the exact string the CI workflow uses for `HUGO_VERSION` - one source of truth for that question.
+Rationale: these are version requests, not ice sculptures. `java = "21"` selects a Java 21 release managed by mise; it pins the major line, not an exact patch build. CMake, Ninja and Hugo have exact version entries. Pin versions that have already built the project successfully, and match CI where it specifies a version. On the website repo, `hugo = "0.161.0"` is the exact string the CI workflow uses for `HUGO_VERSION` - one source of truth for that question.
 
 Then run:
 
@@ -95,7 +111,7 @@ mise use android-sdk@23.0     # ❌ do not commit this
 Two reasons, both discovered the hard way:
 
 1. On a machine with a system Android SDK (like mine), mise downloads a parallel ~155 MB copy nobody asked for.
-2. mise sets `ANDROID_HOME` to that mise copy inside every task - silently repointing an environment that Gradle and Android Studio were already pointing somewhere sensible. A "convenience" tool should not change where your files go.
+2. mise sets `ANDROID_HOME` to that mise copy inside every task - so Gradle launched through mise can use a different SDK than the one configured for the rest of your machine. A "convenience" tool should not change where your builds go.
 
 So the committed file stays honest and quiet about heavyweight SDKs:
 
@@ -174,32 +190,36 @@ It checks and says where each piece of the toolchain lives, or which setup task 
 
 ## Step 6: what mise can't manage gets a fallback
 
-Qt has no mise backend worth using, and its installer downloads are developer-installer-sized. The PC repo's fallback provisions it with `aqtinstall` - the command-line installer GitHub Actions already uses:
+Qt has no mise backend worth using, and its installer downloads are developer-installer-sized. The PC repo's fallback provisions it with `aqtinstall` - the command-line installer GitHub Actions already uses. These are the provisioning commands; setup runs the matching platform commands only when it cannot find a usable Qt install:
 
 ```sh
-mise exec uv@latest -- uvx \
-  --from "git+https://github.com/miurahr/aqtinstall.git@<pinned-commit>" \
-  aqt install-qt windows desktop 6.11.0 win64_mingw -O "$HOME/Qt"
+aqt='git+https://github.com/miurahr/aqtinstall.git@8c3695d4a4e1ceabf6a74dc6c79681656dc6b74b'
+
+# Windows: Qt plus its matching MinGW compiler
+mise exec uv@latest -- uvx --from "$aqt" aqt install-qt windows desktop 6.11.0 win64_mingw -O "$HOME/Qt"
+mise exec uv@latest -- uvx --from "$aqt" aqt install-tool windows desktop tools_mingw1310 -O "$HOME/Qt"
+
+# Linux
+mise exec uv@latest -- uvx --from "$aqt" aqt install-qt linux desktop 6.11.0 linux_gcc_64 -O "$HOME/Qt"
 ```
 
-The point is not the incantation, it's what it produces: the same `cmake_cache_<platform>.cmake` file a human has been writing by hand all along. For the *human path*, the Qt installer approach still works exactly as documented - the fallback is in addition, not instead. (The commit pin exists because aqt's released version can't read Qt's new 6.11+ package layout; the CI workflow documents the same fact.)
+The point is not just the incantation, it's what setup produces: the same `cmake_cache_<platform>.cmake` file a human has been writing by hand all along. For the *human path*, the Qt installer approach still works exactly as documented - the fallback is in addition, not instead. (The commit pin exists because aqt's released version can't read Qt's new 6.11+ package layout; the CI workflow documents the same fact.)
 
 ## The result
 
-From a bare clone, the whole conversation shrinks to:
+After installing mise, cloning the repo, and installing any listed OS prerequisites, the remaining steps are:
 
 ```sh
-# 1. install the version manager (any package manager; https://mise.jdx.dev)
-# 2. go into the repo
+mise install       # install the small, pinned tools
 mise run doctor    # what do I have? what's missing?
-mise run build     # fetches only what's missing, then builds
+mise run build     # set up missing SDKs, then build
 ```
 
-On this website's repo, step 3 is redundant - `hugo` is 100 MB and always pinned. On VirtualGamePad-PC and VirtualGamePad-Mobile it is all three layers at once. Each repo's `mise.toml` is the executable version of this post: same layers, same rationale, full copy-paste for both sh and PowerShell.
+For VirtualGamePad-PC, clone with submodules; Linux also needs a C++ compiler and `libevdev-dev` (see [Build.md](https://github.com/kitswas/VirtualGamePad-PC/blob/main/Build.md) for the package prerequisite). Device tasks in the Android repo also need a connected phone or emulator. On this website's repo, setup is unnecessary - `hugo` is pinned. The repo task definitions implement this policy for both sh and PowerShell; the snippets here show the key commands, not a replacement for those complete tasks.
 
 ### Two detours worth knowing before you try this
 
 - **cmdline-tools 23 is deprecating its own CLI.** `sdkmanager` now prints that the new `android` CLI replaces it, and even warns that `--licenses` is no longer needed. The scripts keep the old names so older tool versions still work; both warnings are harmless noise for now.
-- **A provisioned machine keeps its choice.** Once a machine uses its mise-owned Android SDK, it prefers that copy even if a system SDK appears later. That's by design - consistent beats clever - but if it surprises you, delete `mise.local.toml` and re-run `mise run setup` after the system SDK is installed.
+- **A provisioned machine keeps its choice.** Once a checkout uses its mise-owned Android SDK, it keeps that choice even if a system SDK appears later. To switch, remove the `sdk.dir` entry from `local.properties` (or point it at the new SDK), delete `mise.local.toml`, then re-run `mise run setup`.
 
 Nothing in this pass upgraded Gradle, AGP or CMake - that's the final layer of defense: a meta-manager makes the boring decisions automatic so the interesting ones (renovate the build system? bump Kotlin?) stay deliberate.
