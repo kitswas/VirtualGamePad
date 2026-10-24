@@ -1,6 +1,8 @@
-{{- $src := .Destination -}} {{- if hasPrefix $src "../static/assets/" -}} {{-
-$src = strings.TrimPrefix "../static/" $src -}} {{- $src = $src | relURL -}} {{-
-end -}}
+{{- $src := .Destination -}}
+{{- if findRE `^(\.\./)+static/assets/` $src -}}
+  {{- $src = replaceRE `^(\.\./)+static/` "" $src -}}
+  {{- $src = $src | relURL -}}
+{{- end -}}
 <img
   src="{{ $src | safeURL }}"
   alt="{{ .Text }}"
